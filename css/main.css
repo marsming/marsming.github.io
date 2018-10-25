@@ -2014,7 +2014,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #13257f;
+  background: #c8620b;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3187,6 +3187,14 @@ img:hover {
 }
 .with-love {
   color: #c00027;
+}
+body {
+  background: url("https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog%E6%96%87%E4%BB%B6/backgroud.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 100%;
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
