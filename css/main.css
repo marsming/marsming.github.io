@@ -2014,7 +2014,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1acb45;
+  background: #fcff44;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3189,7 +3189,7 @@ img:hover {
   color: #c00027;
 }
 body {
-  background: url("https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog%E6%96%87%E4%BB%B6/backgroud.jpg");
+  background: url("https://marsm.top/images/backgroud.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
