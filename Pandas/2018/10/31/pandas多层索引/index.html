@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Pandas,Python数据分析,">
+  <meta name="keywords" content="Python数据分析,Pandas,">
 
 
 
@@ -131,14 +131,14 @@
 
 
 <meta name="description" content="1. 创建多层行索引1.1 隐式构造 最常见的方法是给DataFrame构造函数的index参数传递两个或更多的数组 Series也可以创建多层索引    12345678910111213In [1]: import numpy as npIn [2]: import pandas as pdIn [3]: s = pd.Series([1,2,3,4],index=[[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,">
-<meta name="keywords" content="Pandas,Python数据分析">
+<meta name="keywords" content="Python数据分析,Pandas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pandas多层索引">
 <meta property="og:url" content="http://marsm.top/Pandas/2018/10/31/pandas多层索引/index.html">
 <meta property="og:site_name" content="Marsm">
 <meta property="og:description" content="1. 创建多层行索引1.1 隐式构造 最常见的方法是给DataFrame构造函数的index参数传递两个或更多的数组 Series也可以创建多层索引    12345678910111213In [1]: import numpy as npIn [2]: import pandas as pdIn [3]: s = pd.Series([1,2,3,4],index=[[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-31T03:08:25.431Z">
+<meta property="og:updated_time" content="2018-10-31T05:58:53.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pandas多层索引">
 <meta name="twitter:description" content="1. 创建多层行索引1.1 隐式构造 最常见的方法是给DataFrame构造函数的index参数传递两个或更多的数组 Series也可以创建多层索引    12345678910111213In [1]: import numpy as npIn [2]: import pandas as pdIn [3]: s = pd.Series([1,2,3,4],index=[[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,">
@@ -381,7 +381,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-31T11:08:25+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-31T13:58:53+08:00">
                 2018-10-31
               </time>
             
@@ -505,7 +505,7 @@
 <ul>
 <li>使用tuple</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: df2 = pd.DataFrame(np.random.randint(<span class="number">0</span>,<span class="number">150</span>,size=(<span class="number">6</span>,<span class="number">3</span>)),</span><br><span class="line">    ...: columns=[<span class="string">'Java'</span>,<span class="string">'Python'</span>,<span class="string">'Scala'</span>],</span><br><span class="line">    ...: index=pd.MultiIndex.from_tuples([(<span class="string">'张三'</span>,<span class="string">'期中'</span>),(<span class="string">'张三'</span>,<span class="string">'期末'</span>),(<span class="string">'李四'</span>,<span class="string">'期中'</span>),(<span class="string">'李四'</span>,<span class="string">'</span></span><br><span class="line"><span class="string">    ...: 期末'</span>),(<span class="string">'王五'</span>,<span class="string">'期中'</span>),(<span class="string">'王五'</span>,<span class="string">'期末'</span>)]))</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: df2</span><br><span class="line">Out[<span class="number">11</span>]:</span><br><span class="line">       		Java  Python  Scala</span><br><span class="line">张三 期中    <span class="number">80</span>     <span class="number">108</span>    <span class="number">108</span></span><br><span class="line">    期末    <span class="number">146</span>    <span class="number">84</span>      <span class="number">85</span></span><br><span class="line">李四 期中    <span class="number">139</span>    <span class="number">136</span>     <span class="number">66</span></span><br><span class="line">    期末    <span class="number">149</span>    <span class="number">92</span>      <span class="number">94</span></span><br><span class="line">王五 期中    <span class="number">27</span>     <span class="number">83</span>      <span class="number">143</span></span><br><span class="line">    期末    <span class="number">109</span>    <span class="number">4</span>       <span class="number">90</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: df2 = pd.DataFrame(np.random.randint(<span class="number">0</span>,<span class="number">150</span>,size=(<span class="number">6</span>,<span class="number">3</span>)),</span><br><span class="line">    ...: columns=[<span class="string">'Java'</span>,<span class="string">'Python'</span>,<span class="string">'Scala'</span>],</span><br><span class="line">    ...: index=pd.MultiIndex.from_tuples([(<span class="string">'张三'</span>,<span class="string">'期中'</span>),(<span class="string">'张三'</span>,<span class="string">'期末'</span>),(<span class="string">'李四'</span>,<span class="string">'期中'</span>),(<span class="string">'李四'</span>,<span class="string">'</span></span><br><span class="line"><span class="string">    ...: 期末'</span>),(<span class="string">'王五'</span>,<span class="string">'期中'</span>),(<span class="string">'王五'</span>,<span class="string">'期末'</span>)]))</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: df2</span><br><span class="line">Out[<span class="number">11</span>]:</span><br><span class="line">       		Java   Python  Scala</span><br><span class="line">张三 期中    <span class="number">80</span>     <span class="number">108</span>     <span class="number">108</span></span><br><span class="line">    期末    <span class="number">146</span>    <span class="number">84</span>       <span class="number">85</span></span><br><span class="line">李四 期中    <span class="number">139</span>    <span class="number">136</span>     <span class="number">66</span></span><br><span class="line">    期末    <span class="number">149</span>    <span class="number">92</span>      <span class="number">94</span></span><br><span class="line">王五 期中    <span class="number">27</span>     <span class="number">83</span>      <span class="number">143</span></span><br><span class="line">    期末    <span class="number">109</span>    <span class="number">4</span>       <span class="number">90</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>使用product 【最简单，推荐使用】</li>
 </ul>
@@ -602,9 +602,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
-          
             <a href="/tags/Python数据分析/" rel="tag"><i class="fa fa-tag"></i> Python数据分析</a>
+          
+            <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
           
         </div>
       
