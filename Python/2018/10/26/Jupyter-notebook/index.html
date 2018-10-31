@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,Python数据分析,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Jupyter Notebook notebook是Jupyter项目的重要组件之一，它是一个代码、文本（有标记或无标记）、数据可视化或其它输出的交互式文档。Jupyter Notebook需要与内核互动，内核是Jupyter与其它编程语言的交互编程协议。Python的Jupyter内核是使用IPython。要启动Jupyter，在命令行中输入jupyter notebook:  一、IPytho">
+<meta name="keywords" content="Python,Python数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jupyter_notebook">
+<meta property="og:url" content="http://marsm.top/Python/2018/10/26/Jupyter-notebook/index.html">
+<meta property="og:site_name" content="Marsm">
+<meta property="og:description" content="Jupyter Notebook notebook是Jupyter项目的重要组件之一，它是一个代码、文本（有标记或无标记）、数据可视化或其它输出的交互式文档。Jupyter Notebook需要与内核互动，内核是Jupyter与其它编程语言的交互编程协议。Python的Jupyter内核是使用IPython。要启动Jupyter，在命令行中输入jupyter notebook:  一、IPytho">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog_img/tab.png">
+<meta property="og:updated_time" content="2018-10-26T06:14:40.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jupyter_notebook">
+<meta name="twitter:description" content="Jupyter Notebook notebook是Jupyter项目的重要组件之一，它是一个代码、文本（有标记或无标记）、数据可视化或其它输出的交互式文档。Jupyter Notebook需要与内核互动，内核是Jupyter与其它编程语言的交互编程协议。Python的Jupyter内核是使用IPython。要启动Jupyter，在命令行中输入jupyter notebook:  一、IPytho">
+<meta name="twitter:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog_img/tab.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://marsm.top/Python/2018/10/26/Jupyter-notebook/">
+
+
+
+
+
+  <title>Jupyter_notebook | Marsm</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?78fc6121aab1cdc163ad11bea6fa7076";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Marsm</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Life is short, you need Python</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首&emsp;&emsp;页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标&emsp;&emsp;签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分&emsp;&emsp;类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归&emsp;&emsp;档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜&emsp;&emsp;索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://marsm.top/Python/2018/10/26/Jupyter-notebook/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Marsm">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Marsm">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jupyter_notebook</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T14:11:08+08:00">
+                2018-10-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-26T14:14:40+08:00">
+                2018-10-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Python/2018/10/26/Jupyter-notebook/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Python/2018/10/26/Jupyter-notebook/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Python/2018/10/26/Jupyter-notebook/" class="leancloud_visitors" data-flag-title="Jupyter_notebook">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Jupyter-Notebook"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</h1><ul>
+<li>notebook是Jupyter项目的重要组件之一，它是一个代码、文本（有标记或无标记）、数据可视化或其它输出的交互式文档。Jupyter Notebook需要与内核互动，内核是Jupyter与其它编程语言的交互编程协议。Python的Jupyter内核是使用IPython。要启动Jupyter，在命令行中输入<code>jupyter notebook</code>:</li>
+</ul>
+<h2 id="一、IPython帮助文档"><a href="#一、IPython帮助文档" class="headerlink" title="一、IPython帮助文档"></a>一、IPython帮助文档</h2><h3 id="使用help"><a href="#使用help" class="headerlink" title="使用help()"></a>使用help()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用help()</span></span><br><span class="line"><span class="comment">## 通过以下命令获得帮助文档</span></span><br><span class="line"><span class="comment">#或者输入help（）执行程序再输入要查看的相应方法名</span></span><br><span class="line">In [<span class="number">1</span>]: help(len)</span><br><span class="line">Help on built-<span class="keyword">in</span> function len <span class="keyword">in</span> module builtins:</span><br><span class="line"></span><br><span class="line">len(obj, /)</span><br><span class="line">    Return the number of items <span class="keyword">in</span> a container.</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">3</span>]: help(type)</span><br><span class="line">Help on <span class="class"><span class="keyword">class</span> <span class="title">type</span> <span class="title">in</span> <span class="title">module</span> <span class="title">builtins</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">type</span><span class="params">(object)</span></span></span><br><span class="line"><span class="class"> |  <span class="title">type</span><span class="params">(object_or_name, bases, dict)</span></span></span><br><span class="line"><span class="class"> |  <span class="title">type</span><span class="params">(object)</span> -&gt; the object's type</span></span><br><span class="line"><span class="class"> |  type(name, bases, dict) -&gt; a new type</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  Methods defined here:</span></span><br><span class="line"> |</span><br><span class="line"> |  __call__(self, /, *args, **kwargs)</span><br><span class="line"> |      Call self <span class="keyword">as</span> a function.</span><br><span class="line"> |</span><br><span class="line"> |  __delattr__(self, name, /)</span><br><span class="line"> |      Implement delattr(self, name).</span><br><span class="line"> |</span><br><span class="line"> |  __dir__(...)</span><br><span class="line"> |      __dir__() -&gt; list</span><br><span class="line"> |      specialized __dir__ implementation <span class="keyword">for</span> types</span><br><span class="line"> |</span><br><span class="line"> |  __getattribute__(self, name, /)</span><br><span class="line"> |      Return getattr(self, name).</span><br><span class="line"> |</span><br><span class="line"> |  __init__(self, /, *args, **kwargs)</span><br><span class="line"> |      Initialize self.  See help(type(self)) <span class="keyword">for</span> accurate signature.</span><br><span class="line"> |</span><br><span class="line"> |  __instancecheck__(...)</span><br><span class="line"> |      __instancecheck__() -&gt; bool</span><br><span class="line"> |      check <span class="keyword">if</span> an object <span class="keyword">is</span> an instance</span><br><span class="line"> |</span><br><span class="line"> |  __new__(*args, **kwargs)</span><br><span class="line"> |      Create <span class="keyword">and</span> <span class="keyword">return</span> a new object.  See help(type) <span class="keyword">for</span> accurate signature.</span><br><span class="line"> |</span><br><span class="line"> |  __prepare__(...)</span><br><span class="line"> |      __prepare__() -&gt; dict</span><br><span class="line"> |      used to create the namespace <span class="keyword">for</span> the <span class="class"><span class="keyword">class</span> <span class="title">statement</span></span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  <span class="title">__repr__</span><span class="params">(self, /)</span></span></span><br><span class="line"><span class="class"> |      <span class="title">Return</span> <span class="title">repr</span><span class="params">(self)</span>.</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  <span class="title">__setattr__</span><span class="params">(self, name, value, /)</span></span></span><br><span class="line"><span class="class"> |      <span class="title">Implement</span> <span class="title">setattr</span><span class="params">(self, name, value)</span>.</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  <span class="title">__sizeof__</span><span class="params">(...)</span></span></span><br><span class="line"><span class="class"> |      <span class="title">__sizeof__</span><span class="params">()</span> -&gt; int</span></span><br><span class="line"><span class="class"> |      return memory consumption of the type object</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  __subclasscheck__(...)</span></span><br><span class="line"><span class="class"> |      __subclasscheck__() -&gt; bool</span></span><br><span class="line"><span class="class"> |      check if a class is a subclass</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  __subclasses__(...)</span></span><br><span class="line"><span class="class"> |      __subclasses__() -&gt; list of immediate subclasses</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  mro(...)</span></span><br><span class="line"><span class="class"> |      mro() -&gt; list</span></span><br><span class="line"><span class="class"> |      return a type's method resolution order</span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"><span class="class"> |  ----------------------------------------------------------------------</span></span><br><span class="line"><span class="class"> |  Data descriptors defined here:</span></span><br><span class="line"> |</span><br><span class="line"> |  __abstractmethods__</span><br><span class="line"> |</span><br><span class="line"> |  __dict__</span><br><span class="line"> |</span><br><span class="line"> |  __text_signature__</span><br><span class="line"> |</span><br><span class="line"> |  ----------------------------------------------------------------------</span><br><span class="line"> |  Data <span class="keyword">and</span> other attributes defined here:</span><br><span class="line"> |</span><br><span class="line"> |  __base__ = &lt;<span class="class"><span class="keyword">class</span> '<span class="title">object</span>'&gt;</span></span><br><span class="line"><span class="class"> |      <span class="title">The</span> <span class="title">most</span> <span class="title">base</span> <span class="title">type</span></span></span><br><span class="line"><span class="class"> |</span></span><br><span class="line"> |  __bases__ = (&lt;class 'object'&gt;,)</span><br><span class="line"> |</span><br><span class="line"> |  __basicsize__ = <span class="number">864</span></span><br><span class="line"> |</span><br><span class="line"> |  __dictoffset__ = <span class="number">264</span></span><br><span class="line"> |</span><br><span class="line"> |  __flags__ = <span class="number">-2146675712</span></span><br><span class="line"> |</span><br><span class="line"> |  __itemsize__ = <span class="number">40</span></span><br><span class="line"> |</span><br><span class="line"> |  __mro__ = (&lt;class 'type'&gt;, &lt;class 'object'&gt;)</span><br><span class="line"> |</span><br><span class="line"> |  __weakrefoffset__ = <span class="number">368</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用？"><a href="#使用？" class="headerlink" title="使用？"></a>使用？</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用？</span></span><br><span class="line">In [4]: len?</span><br><span class="line">Signature: len(obj, /)</span><br><span class="line">Docstring: Return the number of items <span class="keyword">in</span> a container.</span><br><span class="line">Type:      builtin_function_or_method</span><br></pre></td></tr></table></figure>
+<h3 id="自省"><a href="#自省" class="headerlink" title="自省??"></a>自省??</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_number</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    计算1到100的数之和</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</span><br><span class="line">        sum += i</span><br><span class="line">    print(<span class="string">'sum = %d'</span> % sum)</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_number??</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Signature: add_number(n)</span><br><span class="line">Source:   </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_number</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    计算1到100的数之和</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</span><br><span class="line">        sum += i</span><br><span class="line">    print(<span class="string">'sum = %d'</span> % sum)</span><br><span class="line">File:      d:\myproject\python\jupyter\&lt;ipython-input<span class="number">-20</span>-ad8522950c02&gt;</span><br><span class="line">Type:      function</span><br></pre></td></tr></table></figure>
+<h3 id="tab自动补全"><a href="#tab自动补全" class="headerlink" title="tab自动补全"></a>tab自动补全</h3><p><img src="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog_img/tab.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> scipy <span class="keyword">as</span> sc</span><br></pre></td></tr></table></figure>
+<h2 id="二、IPython魔法指令"><a href="#二、IPython魔法指令" class="headerlink" title="二、IPython魔法指令"></a>二、IPython魔法指令</h2><h3 id="1、运行外部Python文件"><a href="#1、运行外部Python文件" class="headerlink" title="1、运行外部Python文件"></a>1、运行外部Python文件</h3><ul>
+<li>%run *.py运行外部文件（默认是在当前目录）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">创建一个ipython_test.py文件，内容如下：</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x + y) / z</span><br><span class="line">a = <span class="number">5</span></span><br><span class="line">b = <span class="number">6</span></span><br><span class="line">c = <span class="number">7.5</span></span><br><span class="line">result = f(a, b, c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">8</span>]: %run ipython_test.py</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: result</span><br><span class="line">Out[<span class="number">9</span>]: <span class="number">1.4666666666666666</span></span><br><span class="line">In [<span class="number">10</span>]: a</span><br><span class="line">Out[<span class="number">10</span>]: <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、加载外部python文件"><a href="#2、加载外部python文件" class="headerlink" title="2、加载外部python文件"></a>2、加载外部python文件</h3><ul>
+<li>%load *.py加载外部文件</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">11</span>]: %load ipython_test.py</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: <span class="comment"># %load ipython_test.py</span></span><br><span class="line">    ...: <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    ...:     <span class="keyword">return</span> (x + y) / z</span><br><span class="line">    ...: a = <span class="number">5</span></span><br><span class="line">    ...: b = <span class="number">6</span></span><br><span class="line">    ...: c = <span class="number">7.5</span></span><br><span class="line">    ...: result = f(a, b, c)</span><br><span class="line">    ...:</span><br><span class="line">    ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: result</span><br><span class="line">Out[<span class="number">13</span>]: <span class="number">1.4666666666666666</span></span><br></pre></td></tr></table></figure>
+<h3 id="3、运行计时"><a href="#3、运行计时" class="headerlink" title="3、运行计时"></a>3、运行计时</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">14</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>)]</span><br><span class="line">    ...: b = np.array(a)</span><br><span class="line">    ...:</span><br><span class="line">    ...:</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算程序运行时间</span></span><br><span class="line">In [<span class="number">16</span>]: %time b * b</span><br><span class="line">Wall time: <span class="number">1</span> ms</span><br><span class="line">Out[<span class="number">16</span>]:</span><br><span class="line">array([   <span class="number">1</span>,    <span class="number">4</span>,    <span class="number">9</span>,   <span class="number">16</span>,   <span class="number">25</span>,   <span class="number">36</span>,   <span class="number">49</span>,   <span class="number">64</span>,   <span class="number">81</span>,  <span class="number">100</span>,  <span class="number">121</span>,</span><br><span class="line">        <span class="number">144</span>,  <span class="number">169</span>,  <span class="number">196</span>,  <span class="number">225</span>,  <span class="number">256</span>,  <span class="number">289</span>,  <span class="number">324</span>,  <span class="number">361</span>,  <span class="number">400</span>,  <span class="number">441</span>,  <span class="number">484</span>,</span><br><span class="line">        <span class="number">529</span>,  <span class="number">576</span>,  <span class="number">625</span>,  <span class="number">676</span>,  <span class="number">729</span>,  <span class="number">784</span>,  <span class="number">841</span>,  <span class="number">900</span>,  <span class="number">961</span>, <span class="number">1024</span>, <span class="number">1089</span>,</span><br><span class="line">       <span class="number">1156</span>, <span class="number">1225</span>, <span class="number">1296</span>, <span class="number">1369</span>, <span class="number">1444</span>, <span class="number">1521</span>, <span class="number">1600</span>, <span class="number">1681</span>, <span class="number">1764</span>, <span class="number">1849</span>, <span class="number">1936</span>,</span><br><span class="line">       <span class="number">2025</span>, <span class="number">2116</span>, <span class="number">2209</span>, <span class="number">2304</span>, <span class="number">2401</span>, <span class="number">2500</span>, <span class="number">2601</span>, <span class="number">2704</span>, <span class="number">2809</span>, <span class="number">2916</span>, <span class="number">3025</span>,</span><br><span class="line">       <span class="number">3136</span>, <span class="number">3249</span>, <span class="number">3364</span>, <span class="number">3481</span>, <span class="number">3600</span>, <span class="number">3721</span>, <span class="number">3844</span>, <span class="number">3969</span>, <span class="number">4096</span>, <span class="number">4225</span>, <span class="number">4356</span>,</span><br><span class="line">       <span class="number">4489</span>, <span class="number">4624</span>, <span class="number">4761</span>, <span class="number">4900</span>, <span class="number">5041</span>, <span class="number">5184</span>, <span class="number">5329</span>, <span class="number">5476</span>, <span class="number">5625</span>, <span class="number">5776</span>, <span class="number">5929</span>,</span><br><span class="line">       <span class="number">6084</span>, <span class="number">6241</span>, <span class="number">6400</span>, <span class="number">6561</span>, <span class="number">6724</span>, <span class="number">6889</span>, <span class="number">7056</span>, <span class="number">7225</span>, <span class="number">7396</span>, <span class="number">7569</span>, <span class="number">7744</span>,</span><br><span class="line">       <span class="number">7921</span>, <span class="number">8100</span>, <span class="number">8281</span>, <span class="number">8464</span>, <span class="number">8649</span>, <span class="number">8836</span>, <span class="number">9025</span>, <span class="number">9216</span>, <span class="number">9409</span>, <span class="number">9604</span>, <span class="number">9801</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#计算平均运行时间</span></span><br><span class="line">In [<span class="number">17</span>]: %timeit b * b</span><br><span class="line"><span class="number">678</span> ns ± <span class="number">118</span> ns per loop (mean ± std. dev. of <span class="number">7</span> runs, <span class="number">1000000</span> loops each)</span><br></pre></td></tr></table></figure>
+<h3 id="4、查看当前会话中的所有函数与变量"><a href="#4、查看当前会话中的所有函数与变量" class="headerlink" title="4、查看当前会话中的所有函数与变量"></a>4、查看当前会话中的所有函数与变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看当前会话中的所有变量与函数名称：</span></span><br><span class="line">In [<span class="number">18</span>]: %who</span><br><span class="line">a        add_number      b       c       f       np      result</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看当前会话中的所有变量与函数名称的详细信息：</span></span><br><span class="line">In [<span class="number">19</span>]: %whos</span><br><span class="line">Variable     Type        Data/Info</span><br><span class="line">----------------------------------</span><br><span class="line">a            list        n=<span class="number">99</span></span><br><span class="line">add_number   function    &lt;function add_number at <span class="number">0x000002DBBF818D08</span>&gt;</span><br><span class="line">b            ndarray     <span class="number">99</span>: <span class="number">99</span> elems, type `int32`, <span class="number">396</span> bytes</span><br><span class="line">c            float       <span class="number">7.5</span></span><br><span class="line">f            function    &lt;function f at <span class="number">0x000002DBBF818BF8</span>&gt;</span><br><span class="line">np           module      &lt;module <span class="string">'numpy'</span> <span class="keyword">from</span> <span class="string">'F:\&lt;...&gt;ges\\numpy\\__init__.py'</span>&gt;</span><br><span class="line">result       float       <span class="number">1.4666666666666666</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#返回一个字符串列表，列表中的元素是当前会话中的所有变量和函数名：</span></span><br><span class="line">In [<span class="number">20</span>]: %who_ls</span><br><span class="line">Out[<span class="number">20</span>]: [<span class="string">'a'</span>, <span class="string">'add_number'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'f'</span>, <span class="string">'np'</span>, <span class="string">'result'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">21</span>]: !ls</span><br><span class="line">douban_movie.csv</span><br><span class="line">emp.csv</span><br><span class="line">image</span><br><span class="line">ipython_test.py</span><br><span class="line">Jupyter Notebook.ipynb</span><br><span class="line">Numpy.ipynb</span><br><span class="line">Pandas绗旇��</span><br><span class="line">pydata</span><br><span class="line">Python楂樼骇鐗规��.ipynb</span><br><span class="line">Python鍑芥暟寮忕紪绋�.ipynb</span><br><span class="line">Python鍩虹��.ipynb</span><br><span class="line">Python鍩虹��-鍑芥暟.ipynb</span><br><span class="line">Python鍩虹��闆嗗悎.ipynb</span><br><span class="line">Python鍩虹��鍒楄〃.ipynb</span><br><span class="line">Python鍩虹��鍏冪粍.ipynb</span><br><span class="line">Python鍩虹��瀛楀吀.ipynb</span><br><span class="line">Python缁冧範棰�.ipynb</span><br><span class="line">tram.csv</span><br><span class="line">trans_result.xlsx</span><br><span class="line">Untitled.ipynb</span><br><span class="line">Untitled1.ipynb</span><br></pre></td></tr></table></figure>
+<h3 id="5、列出所有魔法"><a href="#5、列出所有魔法" class="headerlink" title="5、列出所有魔法"></a>5、列出所有魔法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">22</span>]: %lsmagic</span><br><span class="line">Out[<span class="number">22</span>]:</span><br><span class="line">Available line magics:</span><br><span class="line">%alias  %alias_magic  %autocall  %autoindent  %automagic  %bookmark  %cd  %cls  %colors  %config  %copy  %cpaste  %ddir  %debug  %dhist  %dirs  %doctest_mode  %echo  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %macro  %magic  %matplotlib  %mkdir  %notebook  %page  %paste  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %popd  %pprint  %precision  %profile  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %quickref  %recall  %rehashx  %reload_ext  %ren  %rep  %rerun  %reset  %reset_selective  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode</span><br><span class="line"></span><br><span class="line">Available cell magics:</span><br><span class="line">%%!  %%HTML  %%SVG  %%bash  %%capture  %%cmd  %%debug  %%file  %%html  %%javascript  %%js  %%latex</span><br><span class="line">%%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile</span><br><span class="line"></span><br><span class="line">Automagic <span class="keyword">is</span> ON, % prefix IS NOT needed <span class="keyword">for</span> line magics.</span><br></pre></td></tr></table></figure>
+<h2 id="三、notebook快捷键"><a href="#三、notebook快捷键" class="headerlink" title="三、notebook快捷键"></a>三、notebook快捷键</h2><h3 id="1、命令模式"><a href="#1、命令模式" class="headerlink" title="1、命令模式"></a>1、命令模式</h3><ul>
+<li>Enter:转入编辑模式</li>
+<li>Shift-Enter:运行本单元，选中下个单元</li>
+<li>Ctrl-Enter:运行本单元，选中下个单元</li>
+<li>Alt-Enter:运行本单元，在下面插入一个单元</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Marsm
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://marsm.top/Python/2018/10/26/Jupyter-notebook/" title="Jupyter_notebook">http://marsm.top/Python/2018/10/26/Jupyter-notebook/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/Python数据分析/" rel="tag"><i class="fa fa-tag"></i> Python数据分析</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python/2018/10/25/2、Python解释器/" rel="next" title="2、Python解释器">
+                <i class="fa fa-chevron-left"></i> 2、Python解释器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Python/2018/10/26/Numpy基本用法/" rel="prev" title="Numpy基本用法">
+                Numpy基本用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Marsm">
+            
+              <p class="site-author-name" itemprop="name">Marsm</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Jupyter-Notebook"><span class="nav-number">1.</span> <span class="nav-text">Jupyter Notebook</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、IPython帮助文档"><span class="nav-number">1.1.</span> <span class="nav-text">一、IPython帮助文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用help"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用help()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用？"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自省"><span class="nav-number">1.1.3.</span> <span class="nav-text">自省??</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tab自动补全"><span class="nav-number">1.1.4.</span> <span class="nav-text">tab自动补全</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、IPython魔法指令"><span class="nav-number">1.2.</span> <span class="nav-text">二、IPython魔法指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、运行外部Python文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、运行外部Python文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、加载外部python文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、加载外部python文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、运行计时"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、运行计时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、查看当前会话中的所有函数与变量"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、查看当前会话中的所有函数与变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、列出所有魔法"><span class="nav-number">1.2.5.</span> <span class="nav-text">5、列出所有魔法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、notebook快捷键"><span class="nav-number">1.3.</span> <span class="nav-text">三、notebook快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、命令模式"><span class="nav-number">1.3.1.</span> <span class="nav-text">1、命令模式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Marsm</span>
+	<br>
+  
+    <!--<span class="post-meta-divider">|</span>-->
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">全站字数&#58;</span>
+    
+    <span title="全站字数">13.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'kgmQivNAXWLoHERRMUGT3q0l-gzGzoHsz',
+        appKey: 'TIQYAjdznmPurJpulmEA7ygX',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kgmQivNAXWLoHERRMUGT3q0l-gzGzoHsz", "TIQYAjdznmPurJpulmEA7ygX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
