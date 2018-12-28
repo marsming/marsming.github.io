@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="通过挂在光盘搭建本地yum仓库方法 1、挂载光盘  12345678910111213在/media目录下新建一个目录 cdrom，用来将光盘挂在到该目录下[root@Linux ~]# mount /dev/cdrom /media/cdrom/mount: /dev/sr0 写保护，将以只读方式挂载[root@Linux ~]# mount /dev/sr0 /media/cdrom/moun">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建本地yum仓库">
+<meta property="og:url" content="http://marsm.top/Linux/2018/02/28/搭建本地yum仓库/index.html">
+<meta property="og:site_name" content="Marsm">
+<meta property="og:description" content="通过挂在光盘搭建本地yum仓库方法 1、挂载光盘  12345678910111213在/media目录下新建一个目录 cdrom，用来将光盘挂在到该目录下[root@Linux ~]# mount /dev/cdrom /media/cdrom/mount: /dev/sr0 写保护，将以只读方式挂载[root@Linux ~]# mount /dev/sr0 /media/cdrom/moun">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-28T10:06:06.113Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建本地yum仓库">
+<meta name="twitter:description" content="通过挂在光盘搭建本地yum仓库方法 1、挂载光盘  12345678910111213在/media目录下新建一个目录 cdrom，用来将光盘挂在到该目录下[root@Linux ~]# mount /dev/cdrom /media/cdrom/mount: /dev/sr0 写保护，将以只读方式挂载[root@Linux ~]# mount /dev/sr0 /media/cdrom/moun">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://marsm.top/Linux/2018/02/28/搭建本地yum仓库/">
+
+
+
+
+
+  <title>搭建本地yum仓库 | Marsm</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?78fc6121aab1cdc163ad11bea6fa7076";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Marsm</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Life is short, you need Python</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首&emsp;&emsp;页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标&emsp;&emsp;签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分&emsp;&emsp;类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归&emsp;&emsp;档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜&emsp;&emsp;索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://marsm.top/Linux/2018/02/28/搭建本地yum仓库/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Marsm">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Marsm">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搭建本地yum仓库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T20:52:15+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-28T18:06:06+08:00">
+                2018-12-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Linux/2018/02/28/搭建本地yum仓库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Linux/2018/02/28/搭建本地yum仓库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Linux/2018/02/28/搭建本地yum仓库/" class="leancloud_visitors" data-flag-title="搭建本地yum仓库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="通过挂在光盘搭建本地yum仓库方法"><a href="#通过挂在光盘搭建本地yum仓库方法" class="headerlink" title="通过挂在光盘搭建本地yum仓库方法"></a>通过挂在光盘搭建本地yum仓库方法</h1><ul>
+<li>1、挂载光盘</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在/media目录下新建一个目录 cdrom，用来将光盘挂在到该目录下</span><br><span class="line"></span><br><span class="line">[root@Linux ~]# mount /dev/cdrom /media/cdrom/</span><br><span class="line"></span><br><span class="line">mount: /dev/sr0 写保护，将以只读方式挂载</span><br><span class="line"></span><br><span class="line">[root@Linux ~]# mount /dev/sr0 /media/cdrom/</span><br><span class="line"></span><br><span class="line">mount: /dev/sr0 写保护，将以只读方式挂载</span><br><span class="line"></span><br><span class="line">mount: /dev/sr0 已经挂载或 /media/cdrom 忙</span><br><span class="line"></span><br><span class="line">		/dev/sr0 已经挂载到 /media/cdrom 上</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2、检查是否挂在成功</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@Linux ~]# df -h</span><br><span class="line">文件系统        容量  已用  可用 已用% 挂载点</span><br><span class="line">/dev/sda3        28G  11G  18G  37% /</span><br><span class="line">devtmpfs        904M    0  904M    0% /dev</span><br><span class="line">tmpfs          913M    0  913M    0% /dev/shm</span><br><span class="line">tmpfs          913M  8.6M  904M    1% /run</span><br><span class="line">tmpfs          913M    0  913M    0% /sys/fs/cgroup</span><br><span class="line">/dev/sda1      497M  129M  368M  26% /boot</span><br><span class="line">tmpfs          183M    0  183M    0% /run/user/0</span><br><span class="line">/dev/sr0        4.1G  4.1G    0  100% /media/cdrom</span><br></pre></td></tr></table></figure>
+<p>可以看到光盘已经挂在到/media/cdrom目录下了</p>
+<ul>
+<li><p>3、进入yum库所在的目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d/</span><br><span class="line">ls</span><br><span class="line">CentOS-Base.repo      CentOS-Media.repo</span><br><span class="line">CentOS-CR.repo        CentOS-Sources.repo</span><br><span class="line">CentOS-Debuginfo.repo  CentOS-Vault.repo</span><br><span class="line">CentOS-fasttrack.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4、将该目录下的文件都修改文件名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># mv CentOS-Base.repo CentOS-Base.repo.bak</span><br><span class="line"># mv CentOS-Debuginfo.repo CentOS-Debuginfo.repo.bak</span><br><span class="line"># mv CentOS-Vault.repo CentOS-Vault.repo.bak</span><br><span class="line"># mv CentOS-CR.repo CentOS-CR.repo.bak</span><br><span class="line"># mv CentOS-fasttrack.repo CentOS-fasttrack.repo.bak</span><br><span class="line"># mv CentOS-Sources.repo CentOS-Sources.repo.bak</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>只保留CentOS-Media.repo文件，方便yum库索引，提高效率（无网状态下）</p>
+<ul>
+<li>5、进入 CentOS-Media.repo 文件，修改yum库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[c7-media]</span><br><span class="line">name=CentOS-$releasever - Media</span><br><span class="line">baseurl=file:///media/CentOS/</span><br><span class="line">​        file:///media/cdrom/</span><br><span class="line">​        file:///media/cdrecorder/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7</span><br></pre></td></tr></table></figure>
+<p>将gpgcheck=1改为gpgcheck=0（gpgcheck是gpg验证是否开启的选项，1是开启，0是不开启，一般情况可以关掉。）<br>将enabled=0改为enabled=1（enabled是开启选项，1是开启，0是不开启）<br>然后保存  退出文件</p>
+<ul>
+<li>6、测试yum库能否安装软件<br>能够成功安装就说明yum库安装成功</li>
+</ul>
+<h1 id="yum的基本命令"><a href="#yum的基本命令" class="headerlink" title="yum的基本命令"></a>yum的基本命令</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h2><ul>
+<li>yum install 全部安装</li>
+<li>yum install package1 安装指定的安装包package1</li>
+<li>yum groupinsall group1 安装程序组group1</li>
+</ul>
+<h2 id="2-更新和升级"><a href="#2-更新和升级" class="headerlink" title="2 更新和升级"></a>2 更新和升级</h2><ul>
+<li>yum update 全部更新</li>
+<li>yum update package1 更新指定程序包package1</li>
+<li>yum check-update 检查可更新的程序</li>
+<li>yum upgrade package1 升级指定程序包package1</li>
+<li>yum groupupdate group1 升级程序组group1</li>
+</ul>
+<h2 id="3-查找和显示"><a href="#3-查找和显示" class="headerlink" title="3 查找和显示"></a>3 查找和显示</h2><ul>
+<li>yum info package1 显示安装包信息package1</li>
+<li>yum list 显示所有已经安装和可以安装的程序包</li>
+<li>yum list package1 显示指定程序包安装情况package1</li>
+<li>yum groupinfo group1 显示程序组group1信息</li>
+<li>yum search string 根据关键字string查找安装包</li>
+</ul>
+<h2 id="4-删除程序"><a href="#4-删除程序" class="headerlink" title="4 删除程序"></a>4 删除程序</h2><ul>
+<li>yum remove &#124; erase package1 删除程序包package1</li>
+<li>yum groupremove group1 删除程序组group1</li>
+<li>yum deplist package1 查看程序package1依赖情况</li>
+</ul>
+<h2 id="5-清除缓存"><a href="#5-清除缓存" class="headerlink" title="5 清除缓存"></a>5 清除缓存</h2><ul>
+<li>yum clean packages 清除缓存目录下的软件包</li>
+<li>yum clean headers 清除缓存目录下的 headers</li>
+<li>yum clean oldheaders 清除缓存目录下旧的 headers</li>
+<li>yum clean, yum clean all (= yum clean packages; yum clean oldheaders) 清除缓存目录下的软件包及旧的headers</li>
+</ul>
+<h1 id="搭建自己的本地YUM仓库"><a href="#搭建自己的本地YUM仓库" class="headerlink" title="搭建自己的本地YUM仓库"></a>搭建自己的本地YUM仓库</h1><p>由于ISO镜像中的软件包太少、太老，所以我的实验使用的yum源是阿里云镜像源；但是阿里云镜像源必须要连接外网才可以使用，做实验时倒无所谓；但是在公司部署大量服务器时会占用出口带宽。另外有些特殊的镜像源架设在国外，使用起来很不稳定。所以本地yum源仓库时必要的。<br>下面是我在部署公司本地yum仓库时的具体部署步骤（以epel-7源为例）：</p>
+<h2 id="1、部署环境："><a href="#1、部署环境：" class="headerlink" title="1、部署环境："></a>1、部署环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">系统：Centos7 x86_64</span><br><span class="line">应用服务：httpd、createrepo、reposync</span><br><span class="line">镜像源：https://mirrors.aliyun.com/repo/epel-7.repo</span><br></pre></td></tr></table></figure>
+<h2 id="2、现在阿里云镜像源repo文件到本地："><a href="#2、现在阿里云镜像源repo文件到本地：" class="headerlink" title="2、现在阿里云镜像源repo文件到本地："></a>2、现在阿里云镜像源repo文件到本地：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~] wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo</span><br></pre></td></tr></table></figure>
+<h2 id="3、安装httpd服务，用于提供存放yum源："><a href="#3、安装httpd服务，用于提供存放yum源：" class="headerlink" title="3、安装httpd服务，用于提供存放yum源："></a>3、安装httpd服务，用于提供存放yum源：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~] yum install httpd -y</span><br><span class="line">使用默认配置即可，如果有特殊需求可以修改配置文件/etc/httpd/conf/httpd.conf</span><br><span class="line">http默认家目录/var/www/html</span><br></pre></td></tr></table></figure>
+<h2 id="4、安装yum-utils提供reporsync服务："><a href="#4、安装yum-utils提供reporsync服务：" class="headerlink" title="4、安装yum-utils提供reporsync服务："></a>4、安装yum-utils提供reporsync服务：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~] yum install yum-utils -y</span><br></pre></td></tr></table></figure>
+<h2 id="5、选择指定仓库标识作为本地yum源："><a href="#5、选择指定仓库标识作为本地yum源：" class="headerlink" title="5、选择指定仓库标识作为本地yum源："></a>5、选择指定仓库标识作为本地yum源：</h2><p>执行yum repolist命令查看yum仓库标识<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum repolist</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">* base: mirrors.163.com</span><br><span class="line">* epel: mirrors.aliyun.com</span><br><span class="line">* extras: mirrors.163.com</span><br><span class="line">* updates: mirrors.163.com</span><br><span class="line">repo id            repo name                                        status</span><br><span class="line">base/7/x86_64      CentOS-7 - Base                                  9,363</span><br><span class="line">epel/x86_64        Extra Packages for Enterprise Linux 7 - x86_64  11,681</span><br><span class="line">extras/7/x86_64    CentOS-7 - Extras                                380</span><br><span class="line">updates/7/x86_64  CentOS-7 - Updates                              1,838</span><br><span class="line">repolist: 23,262</span><br></pre></td></tr></table></figure></p>
+<p>我使用epel作为本地yum源，用/var/www/html作为yum仓库根目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# reposync -r epel -p /var/www/html/</span><br></pre></td></tr></table></figure></p>
+<p>命令执行完毕后，会将阿里云中的epel源同步到本地/var/www/html中；在/var/www/html中自动创建epel目录用于存放rpm包；第一次同步是时间可能较长，大概1W多个rpm包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# </span><br><span class="line">[root@localhost ~]# </span><br><span class="line">[root@localhost ~]# ll /var/www/html/</span><br><span class="line">total 4</span><br><span class="line">drwxr-xr-x. 31 root root 4096 May 27 23:50 epel</span><br></pre></td></tr></table></figure>
+<h2 id="6、createrepo-命令创对-var-www-html-epel下的-rpm-包-创建为本地的-YUM"><a href="#6、createrepo-命令创对-var-www-html-epel下的-rpm-包-创建为本地的-YUM" class="headerlink" title="6、createrepo 命令创对/var/www/html/epel下的 rpm 包 创建为本地的 YUM"></a>6、createrepo 命令创对/var/www/html/epel下的 rpm 包 创建为本地的 YUM</h2><p>仓库，目的是为生成repodata目录并自动创建索引信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# createrepo -pdo /var/www/html/epel/ /var/www/html/epel/　　#第一个目录是repodata存放目录，第二个目录是需要生成索引信息yum源仓库目录</span><br></pre></td></tr></table></figure></p>
+<h2 id="7、验证本地yum源是否能正常使用："><a href="#7、验证本地yum源是否能正常使用：" class="headerlink" title="7、验证本地yum源是否能正常使用："></a>7、验证本地yum源是否能正常使用：</h2><p>登录其他内网其他服务器，要能与yum源服务器通信；编写repo文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/epel-7.repo内容如下</span><br><span class="line">[epel]</span><br><span class="line">name=local epel</span><br><span class="line">baseurl=http://yum源服务器IP/epel</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure></p>
+<p>备份其他repo文件至/etc/yum.repos.d/repobak目录下，以防影响测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# ll /etc/yum.repos.d/</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--. 1 root root  79 May 28 17:26 epel.repo</span><br><span class="line">drwxr-xr-x. 2 root root 4096 May 28 17:25 repobak</span><br></pre></td></tr></table></figure>
+<p>执行yum clean all、yum makecache：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line">[root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
+<h2 id="7、为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现："><a href="#7、为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现：" class="headerlink" title="7、为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现："></a>7、为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim /root/yum-update.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line">datetime=`date +&quot;%Y-%m-%d&quot;`</span><br><span class="line">exec &gt; /var/log/epel.log　　#同步日志输出</span><br><span class="line">reposync -d -r epel -p /var/www/html/  　　#同步镜像源</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">​    createrepo --update  /var/www/html/epel 　　#每次添加新的rpm时,必须更新epel索引信息</span><br><span class="line">​    echo &quot;SUCESS: $datetime epel update successful&quot;else</span><br><span class="line">​    echo &quot;ERROR: $datetime epel update failed&quot;fi</span><br></pre></td></tr></table></figure>
+<p>定时任务：每周六凌晨三点同步yum源<br>crontab -e<br>0 3 <em> </em> 6 /bin/bash /root/yum-update.sh</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Marsm
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://marsm.top/Linux/2018/02/28/搭建本地yum仓库/" title="搭建本地yum仓库">http://marsm.top/Linux/2018/02/28/搭建本地yum仓库/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Linux/2018/02/24/Linux常用配置命令/" rel="next" title="Linux常用配置命令">
+                <i class="fa fa-chevron-left"></i> Linux常用配置命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Spark/2018/03/30/1、Spark-安装及入门/" rel="prev" title="1、spark安装及入门">
+                1、spark安装及入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Marsm">
+            
+              <p class="site-author-name" itemprop="name">Marsm</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通过挂在光盘搭建本地yum仓库方法"><span class="nav-number">1.</span> <span class="nav-text">通过挂在光盘搭建本地yum仓库方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum的基本命令"><span class="nav-number">2.</span> <span class="nav-text">yum的基本命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装"><span class="nav-number">2.1.</span> <span class="nav-text">1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-更新和升级"><span class="nav-number">2.2.</span> <span class="nav-text">2 更新和升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-查找和显示"><span class="nav-number">2.3.</span> <span class="nav-text">3 查找和显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-删除程序"><span class="nav-number">2.4.</span> <span class="nav-text">4 删除程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-清除缓存"><span class="nav-number">2.5.</span> <span class="nav-text">5 清除缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建自己的本地YUM仓库"><span class="nav-number">3.</span> <span class="nav-text">搭建自己的本地YUM仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、部署环境："><span class="nav-number">3.1.</span> <span class="nav-text">1、部署环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、现在阿里云镜像源repo文件到本地："><span class="nav-number">3.2.</span> <span class="nav-text">2、现在阿里云镜像源repo文件到本地：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、安装httpd服务，用于提供存放yum源："><span class="nav-number">3.3.</span> <span class="nav-text">3、安装httpd服务，用于提供存放yum源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、安装yum-utils提供reporsync服务："><span class="nav-number">3.4.</span> <span class="nav-text">4、安装yum-utils提供reporsync服务：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、选择指定仓库标识作为本地yum源："><span class="nav-number">3.5.</span> <span class="nav-text">5、选择指定仓库标识作为本地yum源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、createrepo-命令创对-var-www-html-epel下的-rpm-包-创建为本地的-YUM"><span class="nav-number">3.6.</span> <span class="nav-text">6、createrepo 命令创对/var/www/html/epel下的 rpm 包 创建为本地的 YUM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、验证本地yum源是否能正常使用："><span class="nav-number">3.7.</span> <span class="nav-text">7、验证本地yum源是否能正常使用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现："><span class="nav-number">3.8.</span> <span class="nav-text">7、为保证本地yum源能和阿里云镜像源同步，可以通过脚本定时任务实现：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Marsm</span>
+	<br>
+  
+    <!--<span class="post-meta-divider">|</span>-->
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">全站字数&#58;</span>
+    
+    <span title="全站字数">33.8k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'kgmQivNAXWLoHERRMUGT3q0l-gzGzoHsz',
+        appKey: 'TIQYAjdznmPurJpulmEA7ygX',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kgmQivNAXWLoHERRMUGT3q0l-gzGzoHsz", "TIQYAjdznmPurJpulmEA7ygX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
