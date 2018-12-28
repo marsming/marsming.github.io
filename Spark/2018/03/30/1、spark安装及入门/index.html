@@ -150,7 +150,7 @@
 <meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/spark/spark-10.jpg">
 <meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/spark/spark-11.jpg">
 <meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/spark/spark-12.jpg">
-<meta property="og:updated_time" content="2018-12-28T09:19:17.620Z">
+<meta property="og:updated_time" content="2018-12-28T09:36:25.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark安装及入门">
 <meta name="twitter:description" content="1. 学习目标 目标1：熟悉Spark相关概念 目标2：搭建一个Spark集群 目标3：编写简单的Spark应用程序  2. Spark概述2.1 spark是什么 Spark是一种快速、通用、可扩展的大数据分析引擎，2009年诞生于加州大学伯克利分校AMPLab，2010年开源，2013年6月成为Apache孵化项目，2014年2月成为Apache顶级项目。目前，Spark生态系统已经发展成为一">
@@ -404,7 +404,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-28T17:19:17+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-28T17:36:25+08:00">
                 2018-12-28
               </time>
             
@@ -608,23 +608,18 @@
 </ul>
 <p><img src="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/spark/spark-1.jpg" alt="spark-1"></p>
 <ul>
-<li><p>Spark架构使用了分布式计算中master-slave模型，master是集群中含有master进程的节点，slave是集群中含有worker进程的节点。</p>
-<ul>
+<li>Spark架构使用了分布式计算中master-slave模型，master是集群中含有master进程的节点，slave是集群中含有worker进程的节点。<ul>
 <li>Driver Program ：运⾏main函数并且新建SparkContext的程序。</li>
 <li>Application：基于Spark的应用程序，包含了driver程序和集群上的executor。</li>
-<li><p>Cluster Manager：指的是在集群上获取资源的外部服务。目前有三种类型</p>
-<ul>
-<li><p>（1）Standalone:spark原生的资源管理，由Master负责资源的分配</p>
-</li>
-<li><p>（2）ApacheMesos:与hadoop MR兼容性良好的一种资源调度框架</p>
-</li>
-<li><p>（3）HadoopYarn: 主要是指Yarn中的ResourceManager</p>
+<li>Cluster Manager：指的是在集群上获取资源的外部服务。目前有三种类型<ul>
+<li>（1）Standalone:spark原生的资源管理，由Master负责资源的分配</li>
+<li>（2）ApacheMesos:与hadoop MR兼容性良好的一种资源调度框架</li>
+<li>（3）HadoopYarn: 主要是指Yarn中的ResourceManager</li>
+</ul>
 </li>
 <li>Worker Node： 集群中任何可以运行Application代码的节点，在Standalone模式中指的是通过slaves文件配置的Worker节点，在Spark on Yarn模式下就是NodeManager节点</li>
 <li>Executor：是在一个worker node上为某应⽤启动的⼀个进程，该进程负责运⾏行任务，并且负责将数据存在内存或者磁盘上。每个应⽤都有各自独立的executor。</li>
 <li>Task ：被送到某个executor上的工作单元。</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

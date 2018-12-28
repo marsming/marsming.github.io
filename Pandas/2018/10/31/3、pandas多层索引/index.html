@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="Marsm">
 <meta property="og:description" content="1. 创建多层行索引1.1 隐式构造 最常见的方法是给DataFrame构造函数的index参数传递两个或更多的数组 Series也可以创建多层索引    12345678910111213In [1]: import numpy as npIn [2]: import pandas as pdIn [3]: s = pd.Series([1,2,3,4],index=[[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-31T06:01:08.948Z">
+<meta property="og:updated_time" content="2018-12-28T09:39:35.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pandas多层索引">
 <meta name="twitter:description" content="1. 创建多层行索引1.1 隐式构造 最常见的方法是给DataFrame构造函数的index参数传递两个或更多的数组 Series也可以创建多层索引    12345678910111213In [1]: import numpy as npIn [2]: import pandas as pdIn [3]: s = pd.Series([1,2,3,4],index=[[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,">
@@ -391,8 +391,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-31T14:01:08+08:00">
-                2018-10-31
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-28T17:39:35+08:00">
+                2018-12-28
               </time>
             
           </span>
@@ -577,7 +577,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#axis = 0 行，对行进行求和操作，行的数据就加到一起了，行就消失了</span></span><br><span class="line">In [<span class="number">39</span>]: df1.sum(axis=<span class="number">0</span>)</span><br><span class="line">Out[<span class="number">39</span>]:</span><br><span class="line">Java      <span class="number">487</span></span><br><span class="line">Python    <span class="number">482</span></span><br><span class="line">Scala     <span class="number">501</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">40</span>]: df1.sum(axis=<span class="number">1</span>)</span><br><span class="line">Out[<span class="number">40</span>]:</span><br><span class="line">张三  期中    <span class="number">173</span></span><br><span class="line">     期末    <span class="number">283</span></span><br><span class="line">李四  期中    <span class="number">272</span></span><br><span class="line">     期末    <span class="number">373</span></span><br><span class="line">王五  期中    <span class="number">179</span></span><br><span class="line">     期末    <span class="number">190</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求方差</span></span><br><span class="line">In [<span class="number">41</span>]: df1.std(axis=<span class="number">1</span>)</span><br><span class="line">Out[<span class="number">41</span>]:</span><br><span class="line">张三  期中    <span class="number">77.597251</span></span><br><span class="line">     期末    <span class="number">59.374518</span></span><br><span class="line">李四  期中    <span class="number">12.423097</span></span><br><span class="line">     期末    <span class="number">28.360771</span></span><br><span class="line">王五  期中    <span class="number">40.673497</span></span><br><span class="line">     期末    <span class="number">25.166115</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
