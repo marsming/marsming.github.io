@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Spark,">
+  <meta name="keywords" content="Python,Spark,">
 
 
 
@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="RDD常用算子操作 启动spark-shell 进行测试：  spark-shell –master spark://node-1:7077  练习1：map、filter  12345678910//通过并行化生成rddval rdd1 = sc.parallelize(List(5, 6, 4, 7, 3, 8, 2, 9, 1, 10))//对rdd1里的每一个元素乘2然后排序val rdd">
-<meta name="keywords" content="Spark">
+<meta name="description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
+<meta name="keywords" content="Python,Spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3、Spark-RDD常用算子操作">
-<meta property="og:url" content="http://marsm.top/Spark/2018/04/27/3、Spark-RDD常用算子操作/index.html">
+<meta property="og:title" content="pySpark-DataFrame">
+<meta property="og:url" content="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/index.html">
 <meta property="og:site_name" content="Marsm">
-<meta property="og:description" content="RDD常用算子操作 启动spark-shell 进行测试：  spark-shell –master spark://node-1:7077  练习1：map、filter  12345678910//通过并行化生成rddval rdd1 = sc.parallelize(List(5, 6, 4, 7, 3, 8, 2, 9, 1, 10))//对rdd1里的每一个元素乘2然后排序val rdd">
+<meta property="og:description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-28T10:17:49.691Z">
+<meta property="og:updated_time" content="2018-12-29T07:00:29.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3、Spark-RDD常用算子操作">
-<meta name="twitter:description" content="RDD常用算子操作 启动spark-shell 进行测试：  spark-shell –master spark://node-1:7077  练习1：map、filter  12345678910//通过并行化生成rddval rdd1 = sc.parallelize(List(5, 6, 4, 7, 3, 8, 2, 9, 1, 10))//对rdd1里的每一个元素乘2然后排序val rdd">
+<meta name="twitter:title" content="pySpark-DataFrame">
+<meta name="twitter:description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="http://marsm.top/Spark/2018/04/27/3、Spark-RDD常用算子操作/">
+  <link rel="canonical" href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/">
 
 
 
 
 
-  <title>3、Spark-RDD常用算子操作 | Marsm</title>
+  <title>pySpark-DataFrame | Marsm</title>
   
 
 
@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://marsm.top/Spark/2018/04/27/3、Spark-RDD常用算子操作/">
+    <link itemprop="mainEntityOfPage" href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Marsm">
@@ -363,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">3、Spark-RDD常用算子操作</h1>
+          <h1 class="post-title" itemprop="name headline">pySpark-DataFrame</h1>
         
 
         <div class="post-meta">
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T16:41:02+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T14:59:39+08:00">
+                2018-12-29
               </time>
             
 
@@ -391,8 +391,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-28T18:17:49+08:00">
-                2018-12-28
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-29T15:00:29+08:00">
+                2018-12-29
               </time>
             
           </span>
@@ -411,7 +411,7 @@
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
+                    <span itemprop="name">-Spark</span>
                   </a>
                 </span>
 
@@ -428,8 +428,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Spark/2018/04/27/3、Spark-RDD常用算子操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Spark/2018/04/27/3、Spark-RDD常用算子操作/" itemprop="commentCount"></span>
+                <a href="/Spark/2018/12/29/pySpark-DataFrame/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Spark/2018/12/29/pySpark-DataFrame/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -437,7 +437,7 @@
 
           
           
-             <span id="/Spark/2018/04/27/3、Spark-RDD常用算子操作/" class="leancloud_visitors" data-flag-title="3、Spark-RDD常用算子操作">
+             <span id="/Spark/2018/12/29/pySpark-DataFrame/" class="leancloud_visitors" data-flag-title="pySpark-DataFrame">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -463,7 +463,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  610
+                  278
                 </span>
               
 
@@ -479,7 +479,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  1
                 </span>
               
             </div>
@@ -500,42 +500,16 @@
       
 
       
-        <h1 id="RDD常用算子操作"><a href="#RDD常用算子操作" class="headerlink" title="RDD常用算子操作"></a>RDD常用算子操作</h1><ul>
-<li><p>启动spark-shell 进行测试：</p>
-</li>
-<li><p>spark-shell –master spark://node-1:7077</p>
-</li>
-<li><h4 id="练习1：map、filter"><a href="#练习1：map、filter" class="headerlink" title="练习1：map、filter"></a>练习1：map、filter</h4></li>
+        <h1 id="Spark-DataFrame"><a href="#Spark-DataFrame" class="headerlink" title="Spark DataFrame"></a>Spark DataFrame</h1><h2 id="DataFrame和RDD互操作的两种方法："><a href="#DataFrame和RDD互操作的两种方法：" class="headerlink" title="DataFrame和RDD互操作的两种方法："></a>DataFrame和RDD互操作的两种方法：</h2><ul>
+<li>1.反射模式：Row()            前提：事先需要知道字段、字段类型</li>
+<li>2.编程模式：StructType()            不知道字段、字段类型</li>
+<li>3.选型：优先选择第一种</li>
+<li>实例：</li>
 </ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过并行化生成rdd</span></span><br><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">List</span>(<span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">10</span>))</span><br><span class="line"><span class="comment">//对rdd1里的每一个元素乘2然后排序</span></span><br><span class="line"><span class="keyword">val</span> rdd2 = rdd1.map(_ * <span class="number">2</span>).sortBy(x =&gt; x, <span class="literal">true</span>)</span><br><span class="line"><span class="comment">//过滤出大于等于5的元素</span></span><br><span class="line"><span class="keyword">val</span> rdd3 = rdd2.filter(_ &gt;= <span class="number">5</span>)</span><br><span class="line"><span class="comment">//将元素以数组的方式在客户端显示</span></span><br><span class="line">rdd3.collect</span><br><span class="line">结果：</span><br><span class="line"><span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> Row</span><br><span class="line"><span class="keyword">from</span> pyspark.sql.types <span class="keyword">import</span> *</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">dataframe和rdd的互操作</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#反射推断模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reflect</span><span class="params">(text)</span>:</span></span><br><span class="line">	parts = text.map(<span class="keyword">lambda</span> x: x.split(<span class="string">','</span>))</span><br><span class="line">	emp = parts.map(</span><br><span class="line">		<span class="keyword">lambda</span> x: Row(empno=x[<span class="number">0</span>], ename=x[<span class="number">1</span>], job=x[<span class="number">2</span>], mgr=x[<span class="number">3</span>], hiredate=x[<span class="number">4</span>], sal=x[<span class="number">5</span>], com=x[<span class="number">6</span>], deptno=x[<span class="number">7</span>]))</span><br><span class="line">	<span class="comment"># 将schema注册成一张表</span></span><br><span class="line">	schemaEmp = spark.createDataFrame(emp)</span><br><span class="line">	schemaEmp.createOrReplaceTempView(<span class="string">'emp'</span>)</span><br><span class="line">	schemaEmp.printSchema()</span><br><span class="line">	spark.sql(<span class="string">'select * from emp where sal &gt;=2000'</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#编程模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">structType</span><span class="params">(text)</span>:</span></span><br><span class="line">	parts = text.map(<span class="keyword">lambda</span> x: x.split(<span class="string">','</span>))</span><br><span class="line">	emp = parts.map(<span class="keyword">lambda</span> e: (e[<span class="number">0</span>],e[<span class="number">1</span>],e[<span class="number">2</span>],e[<span class="number">3</span>],e[<span class="number">4</span>],e[<span class="number">5</span>],e[<span class="number">6</span>],e[<span class="number">7</span>]))</span><br><span class="line">	schamestring = <span class="string">'empno,ename,job,mgr,hiredate,sal,com,deptno'</span></span><br><span class="line">	fields = [StructField(field_name,StringType(),<span class="keyword">True</span>) <span class="keyword">for</span> field_name <span class="keyword">in</span> schamestring.split(<span class="string">','</span>)]</span><br><span class="line">	schame = StructType(fields)</span><br><span class="line">	schameEmp = spark.createDataFrame(emp, schame)</span><br><span class="line">	schameEmp.printSchema()</span><br><span class="line">	print(schameEmp.count())</span><br><span class="line">	print(schameEmp.show(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	spark = SparkSession.builder.appName(<span class="string">'dataframe'</span>).master(<span class="string">'local[2]'</span>).getOrCreate()</span><br><span class="line">	read_text = spark.sparkContext.textFile(<span class="string">'D:\myProject\Spark\PySpark\data\emp.txt'</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">#reflect(read_text)</span></span><br><span class="line">	structType(read_text)</span><br><span class="line">	spark.stop()</span><br></pre></td></tr></table></figure>
 <ul>
-<li><h4 id="练习2：flatMap"><a href="#练习2：flatMap" class="headerlink" title="练习2：flatMap"></a>练习2：flatMap</h4></li>
+<li>一些其他的操作查看官网：<a href="http://spark.apache.org/docs/2.3.2/sql-programming-guide.html#inferring-the-schema-using-reflection" target="_blank" rel="noopener">http://spark.apache.org/docs/2.3.2/sql-programming-guide.html#inferring-the-schema-using-reflection</a></li>
 </ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">Array</span>(<span class="string">"a b c"</span>, <span class="string">"d e f"</span>, <span class="string">"h i j"</span>))</span><br><span class="line"><span class="comment">//将rdd1里面的每一个元素先切分在压平</span></span><br><span class="line"><span class="keyword">val</span> rdd2 = rdd1.flatMap(_.split(<span class="string">" "</span>))</span><br><span class="line">rdd2.collect</span><br><span class="line">结果：</span><br><span class="line"><span class="type">Array</span>[<span class="type">String</span>] = <span class="type">Array</span>(a, b, c, d, e, f, h, i, j)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="练习3：交集、并集"><a href="#练习3：交集、并集" class="headerlink" title="练习3：交集、并集"></a>练习3：交集、并集</h4></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">List</span>(<span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>))</span><br><span class="line"><span class="keyword">val</span> rdd2 = sc.parallelize(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"><span class="comment">//求并集</span></span><br><span class="line"><span class="keyword">val</span> rdd3 = rdd1.union(rdd2)</span><br><span class="line"><span class="comment">//求交集</span></span><br><span class="line"><span class="keyword">val</span> rdd4 = rdd1.intersection(rdd2)</span><br><span class="line"><span class="comment">//去重</span></span><br><span class="line">rdd3.distinct.collect</span><br><span class="line"><span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">rdd4.collect</span><br><span class="line"><span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">4</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="练习4：join、groupByKey"><a href="#练习4：join、groupByKey" class="headerlink" title="练习4：join、groupByKey"></a>练习4：join、groupByKey</h4></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">List</span>((<span class="string">"tom"</span>, <span class="number">1</span>), (<span class="string">"jerry"</span>, <span class="number">3</span>), (<span class="string">"kitty"</span>, <span class="number">2</span>)))</span><br><span class="line"><span class="keyword">val</span> rdd2 = sc.parallelize(<span class="type">List</span>((<span class="string">"jerry"</span>, <span class="number">2</span>), (<span class="string">"tom"</span>, <span class="number">1</span>), (<span class="string">"shuke"</span>, <span class="number">2</span>)))</span><br><span class="line"><span class="comment">//求join</span></span><br><span class="line"><span class="keyword">val</span> rdd3 = rdd1.join(rdd2)</span><br><span class="line">rdd3.collect</span><br><span class="line"><span class="type">Array</span>[(<span class="type">String</span>, (<span class="type">Int</span>, <span class="type">Int</span>))] = <span class="type">Array</span>((tom,(<span class="number">1</span>,<span class="number">1</span>)), (jerry,(<span class="number">3</span>,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">//求并集</span></span><br><span class="line"><span class="keyword">val</span> rdd4 = rdd1 union rdd2</span><br><span class="line">rdd4.collect</span><br><span class="line"><span class="type">Array</span>[(<span class="type">String</span>, <span class="type">Int</span>)] = <span class="type">Array</span>((tom,<span class="number">1</span>), (jerry,<span class="number">3</span>), (kitty,<span class="number">2</span>), (jerry,<span class="number">2</span>), (tom,<span class="number">1</span>), (shuke,<span class="number">2</span>))</span><br><span class="line"><span class="comment">//按key进行分组</span></span><br><span class="line"><span class="keyword">val</span> rdd5=rdd4.groupByKey</span><br><span class="line">rdd5.collect</span><br><span class="line"><span class="type">Array</span>[(<span class="type">String</span>, <span class="type">Iterable</span>[<span class="type">Int</span>])] = <span class="type">Array</span>((tom,<span class="type">CompactBuffer</span>(<span class="number">1</span>, <span class="number">1</span>)), (shuke,<span class="type">CompactBuffer</span>(<span class="number">2</span>)), (kitty,<span class="type">CompactBuffer</span>(<span class="number">2</span>)), (jerry,<span class="type">CompactBuffer</span>(<span class="number">2</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="练习5：cogroup"><a href="#练习5：cogroup" class="headerlink" title="练习5：cogroup"></a>练习5：cogroup</h4></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">List</span>((<span class="string">"tom"</span>, <span class="number">1</span>), (<span class="string">"tom"</span>, <span class="number">2</span>), (<span class="string">"jerry"</span>, <span class="number">3</span>), (<span class="string">"kitty"</span>, <span class="number">2</span>)))</span><br><span class="line"><span class="keyword">val</span> rdd2 = sc.parallelize(<span class="type">List</span>((<span class="string">"jerry"</span>, <span class="number">2</span>), (<span class="string">"tom"</span>, <span class="number">1</span>), (<span class="string">"jim"</span>, <span class="number">2</span>)))</span><br><span class="line"><span class="comment">//cogroup</span></span><br><span class="line"><span class="keyword">val</span> rdd3 = rdd1.cogroup(rdd2)</span><br><span class="line"><span class="comment">//注意cogroup与groupByKey的区别</span></span><br><span class="line">rdd3.collect</span><br><span class="line"><span class="type">Array</span>[(<span class="type">String</span>, (<span class="type">Iterable</span>[<span class="type">Int</span>], <span class="type">Iterable</span>[<span class="type">Int</span>]))] = <span class="type">Array</span>((jim,(<span class="type">CompactBuffer</span>(),<span class="type">CompactBuffer</span>(<span class="number">2</span>))), (tom,(<span class="type">CompactBuffer</span>(<span class="number">2</span>, <span class="number">1</span>),<span class="type">CompactBuffer</span>(<span class="number">1</span>))), (jerry,(<span class="type">CompactBuffer</span>(<span class="number">3</span>),<span class="type">CompactBuffer</span>(<span class="number">2</span>))), (kitty,(<span class="type">CompactBuffer</span>(<span class="number">2</span>),<span class="type">CompactBuffer</span>())))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="练习6：reduce"><a href="#练习6：reduce" class="headerlink" title="练习6：reduce"></a>练习6：reduce</h4></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"><span class="comment">//reduce聚合</span></span><br><span class="line"><span class="keyword">val</span> rdd2 = rdd1.reduce(_ + _)</span><br><span class="line">rdd2.collect</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="练习7：reduceByKey、sortByKey"><a href="#练习7：reduceByKey、sortByKey" class="headerlink" title="练习7：reduceByKey、sortByKey"></a>练习7：reduceByKey、sortByKey</h4></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">List</span>((<span class="string">"tom"</span>, <span class="number">1</span>), (<span class="string">"jerry"</span>, <span class="number">3</span>), (<span class="string">"kitty"</span>, <span class="number">2</span>),  (<span class="string">"shuke"</span>, <span class="number">1</span>)))</span><br><span class="line"><span class="keyword">val</span> rdd2 = sc.parallelize(<span class="type">List</span>((<span class="string">"jerry"</span>, <span class="number">2</span>), (<span class="string">"tom"</span>, <span class="number">3</span>), (<span class="string">"shuke"</span>, <span class="number">2</span>), (<span class="string">"kitty"</span>, <span class="number">5</span>)))</span><br><span class="line"><span class="keyword">val</span> rdd3 = rdd1.union(rdd2)</span><br><span class="line"><span class="comment">//按key进行聚合</span></span><br><span class="line"><span class="keyword">val</span> rdd4 = rdd3.reduceByKey(_ + _)</span><br><span class="line">rdd4.collect</span><br><span class="line"><span class="type">Array</span>[(<span class="type">String</span>, <span class="type">Int</span>)] = <span class="type">Array</span>((tom,<span class="number">4</span>), (shuke,<span class="number">3</span>), (kitty,<span class="number">7</span>), (jerry,<span class="number">5</span>))</span><br><span class="line"><span class="comment">//按value的降序排序</span></span><br><span class="line"><span class="keyword">val</span> rdd5 = rdd4.map(t =&gt; (t._2, t._1)).sortByKey(<span class="literal">false</span>).map(t =&gt; (t._2, t._1))</span><br><span class="line">rdd5.collect</span><br><span class="line"><span class="type">Array</span>[(<span class="type">String</span>, <span class="type">Int</span>)] = <span class="type">Array</span>((kitty,<span class="number">7</span>), (jerry,<span class="number">5</span>), (tom,<span class="number">4</span>), (shuke,<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h4 id="练习8：repartition、coalesce"><a href="#练习8：repartition、coalesce" class="headerlink" title="练习8：repartition、coalesce"></a>练习8：repartition、coalesce</h4></li>
-</ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd1 = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">//利用repartition改变rdd1分区数</span></span><br><span class="line"><span class="comment">//减少分区</span></span><br><span class="line">rdd1.repartition(<span class="number">2</span>).partitions.size</span><br><span class="line"><span class="comment">//增加分区</span></span><br><span class="line">rdd1.repartition(<span class="number">4</span>).partitions.size</span><br><span class="line"><span class="comment">//利用coalesce改变rdd1分区数</span></span><br><span class="line"><span class="comment">//减少分区</span></span><br><span class="line">rdd1.coalesce(<span class="number">2</span>).partitions.size</span><br><span class="line"></span><br><span class="line">注意：repartition可以增加和减少rdd中的分区数，coalesce只能减少rdd分区数，增加rdd分区数不会生效。</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -556,7 +530,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://marsm.top/Spark/2018/04/27/3、Spark-RDD常用算子操作/" title="3、Spark-RDD常用算子操作">http://marsm.top/Spark/2018/04/27/3、Spark-RDD常用算子操作/</a>
+    <a href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/" title="pySpark-DataFrame">http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -570,6 +544,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
           
             <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
           
@@ -596,8 +572,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Spark/2018/04/02/4、Spark-SQL/" rel="next" title="4、Spark-SQL">
-                <i class="fa fa-chevron-left"></i> 4、Spark-SQL
+              <a href="/Spark/2018/12/28/pySparkSQL/" rel="next" title="pySparkSQL">
+                <i class="fa fa-chevron-left"></i> pySparkSQL
               </a>
             
           </div>
@@ -605,10 +581,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Python/2018/10/24/1、基本数据类型/" rel="prev" title="1、基本数据类型">
-                1、基本数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -783,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RDD常用算子操作"><span class="nav-number">1.</span> <span class="nav-text">RDD常用算子操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#练习1：map、filter"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">练习1：map、filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习2：flatMap"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">练习2：flatMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习3：交集、并集"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">练习3：交集、并集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习4：join、groupByKey"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">练习4：join、groupByKey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习5：cogroup"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">练习5：cogroup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习6：reduce"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">练习6：reduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习7：reduceByKey、sortByKey"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">练习7：reduceByKey、sortByKey</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习8：repartition、coalesce"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">练习8：repartition、coalesce</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-DataFrame"><span class="nav-number">1.</span> <span class="nav-text">Spark DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame和RDD互操作的两种方法："><span class="nav-number">1.1.</span> <span class="nav-text">DataFrame和RDD互操作的两种方法：</span></a></li></ol></li></ol></div>
             
 
           </div>
