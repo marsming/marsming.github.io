@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Python,Spark,">
+  <meta name="keywords" content="Excel,数据分析,">
 
 
 
@@ -130,18 +130,20 @@
 
 
 
-<meta name="description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
-<meta name="keywords" content="Python,Spark">
+<meta name="description" content="[TOC] 清洗处理类 主要是文本、格式以及脏数据的清洗和转换  Trim 清楚调字符串两边的空格 MySQLl中有同名函数，Python有类似函数strip  Concatenate1=Concatenate(单元格1，单元格2,...)  合并单元格中的内容，还有另外一个合并方式是&amp;amp;。”我”&amp;amp;”很”&amp;amp;”帅” ＝ 我很帅。当需要合并的内容过多时，concatenate的效">
+<meta name="keywords" content="Excel,数据分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pySpark-DataFrame">
-<meta property="og:url" content="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/index.html">
+<meta property="og:title" content="Excel常见函数">
+<meta property="og:url" content="http://marsm.top/Excel/2019/03/13/Excel常见函数/index.html">
 <meta property="og:site_name" content="Marsm">
-<meta property="og:description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
+<meta property="og:description" content="[TOC] 清洗处理类 主要是文本、格式以及脏数据的清洗和转换  Trim 清楚调字符串两边的空格 MySQLl中有同名函数，Python有类似函数strip  Concatenate1=Concatenate(单元格1，单元格2,...)  合并单元格中的内容，还有另外一个合并方式是&amp;amp;。”我”&amp;amp;”很”&amp;amp;”帅” ＝ 我很帅。当需要合并的内容过多时，concatenate的效">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-29T07:28:42.746Z">
+<meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog_img/Quartile函数.png">
+<meta property="og:updated_time" content="2019-03-13T00:54:16.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pySpark-DataFrame">
-<meta name="twitter:description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
+<meta name="twitter:title" content="Excel常见函数">
+<meta name="twitter:description" content="[TOC] 清洗处理类 主要是文本、格式以及脏数据的清洗和转换  Trim 清楚调字符串两边的空格 MySQLl中有同名函数，Python有类似函数strip  Concatenate1=Concatenate(单元格1，单元格2,...)  合并单元格中的内容，还有另外一个合并方式是&amp;amp;。”我”&amp;amp;”很”&amp;amp;”帅” ＝ 我很帅。当需要合并的内容过多时，concatenate的效">
+<meta name="twitter:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog_img/Quartile函数.png">
 
 
 
@@ -171,13 +173,13 @@
 
 
 
-  <link rel="canonical" href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/">
+  <link rel="canonical" href="http://marsm.top/Excel/2019/03/13/Excel常见函数/">
 
 
 
 
 
-  <title>pySpark-DataFrame | Marsm</title>
+  <title>Excel常见函数 | Marsm</title>
   
 
 
@@ -346,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/">
+    <link itemprop="mainEntityOfPage" href="http://marsm.top/Excel/2019/03/13/Excel常见函数/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Marsm">
@@ -363,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">pySpark-DataFrame</h1>
+          <h1 class="post-title" itemprop="name headline">Excel常见函数</h1>
         
 
         <div class="post-meta">
@@ -375,8 +377,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T14:59:39+08:00">
-                2018-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-13T08:51:43+08:00">
+                2019-03-13
               </time>
             
 
@@ -391,8 +393,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-29T15:28:42+08:00">
-                2018-12-29
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-13T08:54:16+08:00">
+                2019-03-13
               </time>
             
           </span>
@@ -410,8 +412,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
+                  <a href="/categories/Excel/" itemprop="url" rel="index">
+                    <span itemprop="name">Excel</span>
                   </a>
                 </span>
 
@@ -428,8 +430,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Spark/2018/12/29/pySpark-DataFrame/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Spark/2018/12/29/pySpark-DataFrame/" itemprop="commentCount"></span>
+                <a href="/Excel/2019/03/13/Excel常见函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Excel/2019/03/13/Excel常见函数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -437,7 +439,7 @@
 
           
           
-             <span id="/Spark/2018/12/29/pySpark-DataFrame/" class="leancloud_visitors" data-flag-title="pySpark-DataFrame">
+             <span id="/Excel/2019/03/13/Excel常见函数/" class="leancloud_visitors" data-flag-title="Excel常见函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -463,7 +465,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  278
+                  1.4k
                 </span>
               
 
@@ -479,7 +481,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  5
                 </span>
               
             </div>
@@ -500,15 +502,166 @@
       
 
       
-        <h1 id="Spark-DataFrame"><a href="#Spark-DataFrame" class="headerlink" title="Spark DataFrame"></a>Spark DataFrame</h1><h2 id="DataFrame和RDD互操作的两种方法："><a href="#DataFrame和RDD互操作的两种方法：" class="headerlink" title="DataFrame和RDD互操作的两种方法："></a>DataFrame和RDD互操作的两种方法：</h2><ul>
-<li>1.反射模式：Row()            前提：事先需要知道字段、字段类型</li>
-<li>2.编程模式：StructType()            不知道字段、字段类型</li>
-<li>3.选型：优先选择第一种</li>
+        <p>[TOC]</p>
+<h1 id="清洗处理类"><a href="#清洗处理类" class="headerlink" title="清洗处理类"></a>清洗处理类</h1><ul>
+<li>主要是文本、格式以及脏数据的清洗和转换</li>
+</ul>
+<h2 id="Trim"><a href="#Trim" class="headerlink" title="Trim"></a>Trim</h2><ul>
+<li>清楚调字符串两边的空格</li>
+<li>MySQLl中有同名函数，Python有类似函数strip</li>
+</ul>
+<h2 id="Concatenate"><a href="#Concatenate" class="headerlink" title="Concatenate"></a>Concatenate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Concatenate(单元格1，单元格2,...)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>合并单元格中的内容，还有另外一个合并方式是&amp;。”我”&amp;”很”&amp;”帅” ＝ 我很帅。当需要合并的内容过多时，concatenate的效率快也优雅。</li>
+</ul>
+<h2 id="Replace"><a href="#Replace" class="headerlink" title="Replace"></a>Replace</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Replace(指定字符串，开始替换的位置，替换几个字符，替换成什么)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>替换掉单元格的字符串，清洗使用较多。</li>
 <li>实例：</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> Row</span><br><span class="line"><span class="keyword">from</span> pyspark.sql.types <span class="keyword">import</span> *</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">dataframe和rdd的互操作</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#反射推断模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reflect</span><span class="params">(text)</span>:</span></span><br><span class="line">	parts = text.map(<span class="keyword">lambda</span> x: x.split(<span class="string">','</span>))</span><br><span class="line">	emp = parts.map(</span><br><span class="line">		<span class="keyword">lambda</span> x: Row(empno=x[<span class="number">0</span>], ename=x[<span class="number">1</span>], job=x[<span class="number">2</span>], mgr=x[<span class="number">3</span>], hiredate=x[<span class="number">4</span>], sal=x[<span class="number">5</span>], com=x[<span class="number">6</span>], deptno=x[<span class="number">7</span>]))</span><br><span class="line">	<span class="comment"># 将schema注册成一张表</span></span><br><span class="line">	schemaEmp = spark.createDataFrame(emp)</span><br><span class="line">	schemaEmp.createOrReplaceTempView(<span class="string">'emp'</span>)</span><br><span class="line">	schemaEmp.printSchema()</span><br><span class="line">	spark.sql(<span class="string">'select * from emp where sal &gt;=2000'</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#编程模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">structType</span><span class="params">(text)</span>:</span></span><br><span class="line">	parts = text.map(<span class="keyword">lambda</span> x: x.split(<span class="string">','</span>))</span><br><span class="line">	emp = parts.map(<span class="keyword">lambda</span> e: (e[<span class="number">0</span>],e[<span class="number">1</span>],e[<span class="number">2</span>],e[<span class="number">3</span>],e[<span class="number">4</span>],e[<span class="number">5</span>],e[<span class="number">6</span>],e[<span class="number">7</span>]))</span><br><span class="line">	schamestring = <span class="string">'empno,ename,job,mgr,hiredate,sal,com,deptno'</span></span><br><span class="line">	fields = [StructField(field_name,StringType(),<span class="keyword">True</span>) <span class="keyword">for</span> field_name <span class="keyword">in</span> schamestring.split(<span class="string">','</span>)]</span><br><span class="line">	schame = StructType(fields)</span><br><span class="line">	schameEmp = spark.createDataFrame(emp, schame)</span><br><span class="line">	schameEmp.printSchema()</span><br><span class="line">	print(schameEmp.count())</span><br><span class="line">	print(schameEmp.show(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	spark = SparkSession.builder.appName(<span class="string">'dataframe'</span>).master(<span class="string">'local[2]'</span>).getOrCreate()</span><br><span class="line">	read_text = spark.sparkContext.textFile(<span class="string">'D:\myProject\Spark\PySpark\data\emp.txt'</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">#reflect(read_text)</span></span><br><span class="line">	structType(read_text)</span><br><span class="line">	spark.stop()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 替换手机号后四位为****</span><br><span class="line">=replace(A2,8,4,&apos;****&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="Substitute"><a href="#Substitute" class="headerlink" title="Substitute"></a>Substitute</h2><ul>
+<li>和replace接近，区别是进行全局替换，没有起始位置的概念</li>
+</ul>
+<h2 id="Left-Right-Mid"><a href="#Left-Right-Mid" class="headerlink" title="Left/Right/Mid"></a>Left/Right/Mid</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Mid(指定字符串，开始位置，截取长度)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>一些其他的操作查看官网：<a href="http://spark.apache.org/docs/2.3.2/sql-programming-guide.html#inferring-the-schema-using-reflection" target="_blank" rel="noopener">http://spark.apache.org/docs/2.3.2/sql-programming-guide.html#inferring-the-schema-using-reflection</a></li>
+<li>截取字符串中的字符，Left/Right（指定字符串，截取长度）。left为从左，right为从右。</li>
+</ul>
+<h2 id="Len-Lenb"><a href="#Len-Lenb" class="headerlink" title="Len/Lenb"></a>Len/Lenb</h2><ul>
+<li>返回字符串的长度，在len中，中文计算为一个，在lenb中，中文计算为两个。</li>
+</ul>
+<h2 id="Find"><a href="#Find" class="headerlink" title="Find"></a>Find</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Find(要查找字符，指定字符串，第几个字符)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找某字符串的位置，可以指定位第几次出现，与left/right/mid结合能完成简单的文本提取。</li>
+</ul>
+<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h2><ul>
+<li>和find类似，区别是Search不区分大小写，支持*通配符</li>
+</ul>
+<hr>
+<h1 id="关联匹配类"><a href="#关联匹配类" class="headerlink" title="关联匹配类"></a>关联匹配类</h1><ul>
+<li>在进行多表关联或者进行行列对比是用到一下函数。</li>
+</ul>
+<h2 id="Lookup"><a href="#Lookup" class="headerlink" title="Lookup"></a>Lookup</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Lookup(查找的值，值所在的位置，返回相应位置的值)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>功能性和Vlookup一样，但是引申有数组匹配和二分法。</li>
+</ul>
+<h2 id="Vlookup"><a href="#Vlookup" class="headerlink" title="Vlookup"></a>Vlookup</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Vlookup(查找的值，哪里查找，找哪个位置的值，是否精准匹配)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通俗理解：查找到某个值然后粘贴过来</li>
+</ul>
+<h2 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Index(查找的区域，区域内第几行，区域内第几列)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>和Match组合，媲美Vlookup，但是功能更强大。</li>
+</ul>
+<h2 id="Match"><a href="#Match" class="headerlink" title="Match"></a>Match</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Match(查找指定的值，查找所在区域，查找方式的参数)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>和Vlookup类似，但是可以按照指定方式查找，比如大于、小于或等于，返回值所在的位置。</li>
+</ul>
+<h2 id="Row"><a href="#Row" class="headerlink" title="Row"></a>Row</h2><ul>
+<li>返回单元格所在的行</li>
+</ul>
+<h2 id="Column"><a href="#Column" class="headerlink" title="Column"></a>Column</h2><ul>
+<li>返回单元格所在的列</li>
+</ul>
+<h2 id="Offset"><a href="#Offset" class="headerlink" title="Offset"></a>Offset</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Offset(指定点，偏移多少行，偏移多少列，返回多少行，返回多少列)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>建立坐标系，以坐标系位原点，返回距离原点的值或者区域。正数代表向下或者向左，负数则相反。</li>
+</ul>
+<hr>
+<h1 id="逻辑运算类"><a href="#逻辑运算类" class="headerlink" title="逻辑运算类"></a>逻辑运算类</h1><ul>
+<li>数据分析中不得不用到逻辑运算，逻辑运算返回的是布尔类型，True和False。很多复杂的数据分析会涉及到较多的逻辑运算。</li>
+</ul>
+<h2 id="If"><a href="#If" class="headerlink" title="If"></a>If</h2><ul>
+<li>经典的如果但是，在Python中也进场使用，会有许多更优雅的写法。有ifs用法，取代<code>if(end())</code>的写法。</li>
+</ul>
+<h2 id="And"><a href="#And" class="headerlink" title="And"></a>And</h2><ul>
+<li>全部参数位True，则返回True，经常用于多条件判断。</li>
+</ul>
+<h2 id="Or"><a href="#Or" class="headerlink" title="Or"></a>Or</h2><ul>
+<li>只要参数有一个True，则返回True，经常用于多条件判断。</li>
+</ul>
+<h2 id="IS系列"><a href="#IS系列" class="headerlink" title="IS系列"></a>IS系列</h2><ul>
+<li>常用判断检验，返回的多是布尔数值True和False。常用ISERR，ISERROR，ISNA，ISTEXT，可以和IF嵌套使用。</li>
+</ul>
+<hr>
+<h1 id="计算统计类"><a href="#计算统计类" class="headerlink" title="计算统计类"></a>计算统计类</h1><ul>
+<li>常用的基础计算、分析、统计函数，以描述性统计为准。</li>
+</ul>
+<h2 id="Sum-Sumif-Sumifs"><a href="#Sum-Sumif-Sumifs" class="headerlink" title="Sum /Sumif /Sumifs"></a>Sum /Sumif /Sumifs</h2><ul>
+<li>统计满足条件的单元格总和。</li>
+</ul>
+<h2 id="Sumproduct"><a href="#Sumproduct" class="headerlink" title="Sumproduct"></a>Sumproduct</h2><ul>
+<li>统计总和相关，在给定的几组数组中，然后把数组间对应的元素相乘，最后返回乘积之和。例如，有两列数据销量和单价，现在要求卖出总额，用sumproduct最方便。</li>
+</ul>
+<h2 id="Count-Countif-Countifs"><a href="#Count-Countif-Countifs" class="headerlink" title="Count /Countif /Countifs"></a>Count /Countif /Countifs</h2><ul>
+<li>统计满足条件的字符串个数。</li>
+</ul>
+<h2 id="Max"><a href="#Max" class="headerlink" title="Max"></a>Max</h2><ul>
+<li>返回数组或引用区域的最大值。</li>
+</ul>
+<h2 id="Min"><a href="#Min" class="headerlink" title="Min"></a>Min</h2><ul>
+<li>返回数组或引用区域的最小值。</li>
+</ul>
+<h2 id="Rank"><a href="#Rank" class="headerlink" title="Rank"></a>Rank</h2><ul>
+<li>排序，返回指定值在引用区域的排名，重复值同一排名。</li>
+</ul>
+<h2 id="Rand-Randbetween"><a href="#Rand-Randbetween" class="headerlink" title="Rand /Randbetween"></a>Rand /Randbetween</h2><ul>
+<li>常用随机抽样，前者返回0~1之间的随机值，后者可指定范围。</li>
+</ul>
+<h2 id="Averagea"><a href="#Averagea" class="headerlink" title="Averagea"></a>Averagea</h2><ul>
+<li>求平均值，也有Averageaif，Averageaifs。</li>
+</ul>
+<h2 id="Quartile"><a href="#Quartile" class="headerlink" title="Quartile"></a>Quartile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Quartile(指定区域，分位参数)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>计算四分位数，比如1~100的数字中，25分位就是按从小到大排列，在25%位置的数字，即25。参数0代表最小值，参数4代表最大值，1~3对应25、50（中位数）、75分位</li>
+</ul>
+<p><img src="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/blog_img/Quartile函数.png" alt=""></p>
+<h2 id="Stdev"><a href="#Stdev" class="headerlink" title="Stdev"></a>Stdev</h2><ul>
+<li>求标准差，统计型函数。</li>
+</ul>
+<h2 id="Substoal"><a href="#Substoal" class="headerlink" title="Substoal"></a>Substoal</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Substotal(引用区域，参数)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>汇总型函数，将平均值、计数、最大最小、相乘、标准差、求和、方差等参数化，换言之，只要会了这个函数，上面的都可以抛弃掉。</li>
+</ul>
+<h2 id="Int-Round"><a href="#Int-Round" class="headerlink" title="Int /Round"></a>Int /Round</h2><ul>
+<li>取整函数，int向下取整，round按小数位取数。</li>
+<li>round(3.14159,2) = 3.14</li>
+<li>round(3.14159,1) = 3.1</li>
+</ul>
+<hr>
+<h1 id="时间序列类"><a href="#时间序列类" class="headerlink" title="时间序列类"></a>时间序列类</h1><ul>
+<li>专门用于处理时间格式以及转换，时间序列在金融、财务等数据分析中占有较大比重。</li>
+</ul>
+<h2 id="Year"><a href="#Year" class="headerlink" title="Year"></a>Year</h2><ul>
+<li>返回日期中的年。</li>
+</ul>
+<h2 id="Month"><a href="#Month" class="headerlink" title="Month"></a>Month</h2><ul>
+<li>返回日期中的月。</li>
+</ul>
+<h2 id="Weekday"><a href="#Weekday" class="headerlink" title="Weekday"></a>Weekday</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Weekday(指定时间，参数)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>返回指定时间位一周中的第几天，参数位1代表从星期日开始算第一天，参数2代表从星期一开始算第一天。</li>
+</ul>
+<h2 id="Weeknum"><a href="#Weeknum" class="headerlink" title="Weeknum"></a>Weeknum</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Weeknum(指定时间，参数)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>返回一年中的第几个星期，后面的参数类同weekday。</li>
+</ul>
+<h2 id="Day"><a href="#Day" class="headerlink" title="Day"></a>Day</h2><ul>
+<li>返回日期中的日。</li>
+</ul>
+<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Date(年，月，日)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间转换函数，等于将year()，month()，day()合并。</li>
+</ul>
+<h2 id="Now"><a href="#Now" class="headerlink" title="Now"></a>Now</h2><ul>
+<li>返回当前时间戳，动态函数</li>
+</ul>
+<h2 id="Today"><a href="#Today" class="headerlink" title="Today"></a>Today</h2><ul>
+<li>返回今天的日期，动态函数</li>
+</ul>
+<h2 id="Datedif"><a href="#Datedif" class="headerlink" title="Datedif"></a>Datedif</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=Datedif(开始日期，结束日期，参数)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>日期计算函数，计算两日期的差，参数决定返回的是年还是月。</li>
 </ul>
 
       
@@ -530,7 +683,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/" title="pySpark-DataFrame">http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/</a>
+    <a href="http://marsm.top/Excel/2019/03/13/Excel常见函数/" title="Excel常见函数">http://marsm.top/Excel/2019/03/13/Excel常见函数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -545,9 +698,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+            <a href="/tags/Excel/" rel="tag"><i class="fa fa-tag"></i> Excel</a>
           
-            <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
+            <a href="/tags/数据分析/" rel="tag"><i class="fa fa-tag"></i> 数据分析</a>
           
         </div>
       
@@ -572,8 +725,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Spark/2018/12/28/pySpark-SQL/" rel="next" title="pySpark-SQL">
-                <i class="fa fa-chevron-left"></i> pySpark-SQL
+              <a href="/Spark/2018/12/29/pySpark-DataFrame/" rel="next" title="pySpark-DataFrame">
+                <i class="fa fa-chevron-left"></i> pySpark-DataFrame
               </a>
             
           </div>
@@ -582,8 +735,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Excel/2019/03/13/Excel常见函数/" rel="prev" title="Excel常见函数">
-                Excel常见函数 <i class="fa fa-chevron-right"></i>
+              <a href="/Excel/2019/03/13/Excel技巧/" rel="prev" title="Excel技巧">
+                Excel技巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -759,7 +912,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-DataFrame"><span class="nav-number">1.</span> <span class="nav-text">Spark DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame和RDD互操作的两种方法："><span class="nav-number">1.1.</span> <span class="nav-text">DataFrame和RDD互操作的两种方法：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#清洗处理类"><span class="nav-number">1.</span> <span class="nav-text">清洗处理类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trim"><span class="nav-number">1.1.</span> <span class="nav-text">Trim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Concatenate"><span class="nav-number">1.2.</span> <span class="nav-text">Concatenate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replace"><span class="nav-number">1.3.</span> <span class="nav-text">Replace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Substitute"><span class="nav-number">1.4.</span> <span class="nav-text">Substitute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Left-Right-Mid"><span class="nav-number">1.5.</span> <span class="nav-text">Left/Right/Mid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Len-Lenb"><span class="nav-number">1.6.</span> <span class="nav-text">Len/Lenb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Find"><span class="nav-number">1.7.</span> <span class="nav-text">Find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search"><span class="nav-number">1.8.</span> <span class="nav-text">Search</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联匹配类"><span class="nav-number">2.</span> <span class="nav-text">关联匹配类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lookup"><span class="nav-number">2.1.</span> <span class="nav-text">Lookup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vlookup"><span class="nav-number">2.2.</span> <span class="nav-text">Vlookup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Index"><span class="nav-number">2.3.</span> <span class="nav-text">Index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Match"><span class="nav-number">2.4.</span> <span class="nav-text">Match</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Row"><span class="nav-number">2.5.</span> <span class="nav-text">Row</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Column"><span class="nav-number">2.6.</span> <span class="nav-text">Column</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Offset"><span class="nav-number">2.7.</span> <span class="nav-text">Offset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑运算类"><span class="nav-number">3.</span> <span class="nav-text">逻辑运算类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#If"><span class="nav-number">3.1.</span> <span class="nav-text">If</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#And"><span class="nav-number">3.2.</span> <span class="nav-text">And</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Or"><span class="nav-number">3.3.</span> <span class="nav-text">Or</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IS系列"><span class="nav-number">3.4.</span> <span class="nav-text">IS系列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算统计类"><span class="nav-number">4.</span> <span class="nav-text">计算统计类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sum-Sumif-Sumifs"><span class="nav-number">4.1.</span> <span class="nav-text">Sum /Sumif /Sumifs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sumproduct"><span class="nav-number">4.2.</span> <span class="nav-text">Sumproduct</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Count-Countif-Countifs"><span class="nav-number">4.3.</span> <span class="nav-text">Count /Countif /Countifs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max"><span class="nav-number">4.4.</span> <span class="nav-text">Max</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Min"><span class="nav-number">4.5.</span> <span class="nav-text">Min</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rank"><span class="nav-number">4.6.</span> <span class="nav-text">Rank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rand-Randbetween"><span class="nav-number">4.7.</span> <span class="nav-text">Rand /Randbetween</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Averagea"><span class="nav-number">4.8.</span> <span class="nav-text">Averagea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quartile"><span class="nav-number">4.9.</span> <span class="nav-text">Quartile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stdev"><span class="nav-number">4.10.</span> <span class="nav-text">Stdev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Substoal"><span class="nav-number">4.11.</span> <span class="nav-text">Substoal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Int-Round"><span class="nav-number">4.12.</span> <span class="nav-text">Int /Round</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间序列类"><span class="nav-number">5.</span> <span class="nav-text">时间序列类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Year"><span class="nav-number">5.1.</span> <span class="nav-text">Year</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Month"><span class="nav-number">5.2.</span> <span class="nav-text">Month</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weekday"><span class="nav-number">5.3.</span> <span class="nav-text">Weekday</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weeknum"><span class="nav-number">5.4.</span> <span class="nav-text">Weeknum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day"><span class="nav-number">5.5.</span> <span class="nav-text">Day</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date"><span class="nav-number">5.6.</span> <span class="nav-text">Date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Now"><span class="nav-number">5.7.</span> <span class="nav-text">Now</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Today"><span class="nav-number">5.8.</span> <span class="nav-text">Today</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Datedif"><span class="nav-number">5.9.</span> <span class="nav-text">Datedif</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Python,Spark,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -130,18 +130,13 @@
 
 
 
-<meta name="description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
-<meta name="keywords" content="Python,Spark">
-<meta property="og:type" content="article">
-<meta property="og:title" content="pySpark-DataFrame">
-<meta property="og:url" content="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Marsm">
+<meta property="og:url" content="http://marsm.top/archives/2019/03/index.html">
 <meta property="og:site_name" content="Marsm">
-<meta property="og:description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-29T07:28:42.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pySpark-DataFrame">
-<meta name="twitter:description" content="Spark DataFrameDataFrame和RDD互操作的两种方法： 1.反射模式：Row()            前提：事先需要知道字段、字段类型 2.编程模式：StructType()            不知道字段、字段类型 3.选型：优先选择第一种 实例：  1234567891011121314151617181920212223242526272829303132333435">
+<meta name="twitter:title" content="Marsm">
 
 
 
@@ -171,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/">
+  <link rel="canonical" href="http://marsm.top/archives/2019/03/">
 
 
 
 
 
-  <title>pySpark-DataFrame | Marsm</title>
+  <title>归档 | Marsm</title>
   
 
 
@@ -206,7 +201,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -332,317 +327,107 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 18 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Marsm">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Marsm">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/Excel/2019/03/13/Excel技巧/" itemprop="url">
+              
+                <span itemprop="name">Excel技巧</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">pySpark-DataFrame</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T14:59:39+08:00">
-                2018-12-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-29T15:28:42+08:00">
-                2018-12-29
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Spark/2018/12/29/pySpark-DataFrame/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Spark/2018/12/29/pySpark-DataFrame/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Spark/2018/12/29/pySpark-DataFrame/" class="leancloud_visitors" data-flag-title="pySpark-DataFrame">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">热度&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 <span>℃</span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  278
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="Spark-DataFrame"><a href="#Spark-DataFrame" class="headerlink" title="Spark DataFrame"></a>Spark DataFrame</h1><h2 id="DataFrame和RDD互操作的两种方法："><a href="#DataFrame和RDD互操作的两种方法：" class="headerlink" title="DataFrame和RDD互操作的两种方法："></a>DataFrame和RDD互操作的两种方法：</h2><ul>
-<li>1.反射模式：Row()            前提：事先需要知道字段、字段类型</li>
-<li>2.编程模式：StructType()            不知道字段、字段类型</li>
-<li>3.选型：优先选择第一种</li>
-<li>实例：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> Row</span><br><span class="line"><span class="keyword">from</span> pyspark.sql.types <span class="keyword">import</span> *</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">dataframe和rdd的互操作</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#反射推断模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reflect</span><span class="params">(text)</span>:</span></span><br><span class="line">	parts = text.map(<span class="keyword">lambda</span> x: x.split(<span class="string">','</span>))</span><br><span class="line">	emp = parts.map(</span><br><span class="line">		<span class="keyword">lambda</span> x: Row(empno=x[<span class="number">0</span>], ename=x[<span class="number">1</span>], job=x[<span class="number">2</span>], mgr=x[<span class="number">3</span>], hiredate=x[<span class="number">4</span>], sal=x[<span class="number">5</span>], com=x[<span class="number">6</span>], deptno=x[<span class="number">7</span>]))</span><br><span class="line">	<span class="comment"># 将schema注册成一张表</span></span><br><span class="line">	schemaEmp = spark.createDataFrame(emp)</span><br><span class="line">	schemaEmp.createOrReplaceTempView(<span class="string">'emp'</span>)</span><br><span class="line">	schemaEmp.printSchema()</span><br><span class="line">	spark.sql(<span class="string">'select * from emp where sal &gt;=2000'</span>).show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#编程模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">structType</span><span class="params">(text)</span>:</span></span><br><span class="line">	parts = text.map(<span class="keyword">lambda</span> x: x.split(<span class="string">','</span>))</span><br><span class="line">	emp = parts.map(<span class="keyword">lambda</span> e: (e[<span class="number">0</span>],e[<span class="number">1</span>],e[<span class="number">2</span>],e[<span class="number">3</span>],e[<span class="number">4</span>],e[<span class="number">5</span>],e[<span class="number">6</span>],e[<span class="number">7</span>]))</span><br><span class="line">	schamestring = <span class="string">'empno,ename,job,mgr,hiredate,sal,com,deptno'</span></span><br><span class="line">	fields = [StructField(field_name,StringType(),<span class="keyword">True</span>) <span class="keyword">for</span> field_name <span class="keyword">in</span> schamestring.split(<span class="string">','</span>)]</span><br><span class="line">	schame = StructType(fields)</span><br><span class="line">	schameEmp = spark.createDataFrame(emp, schame)</span><br><span class="line">	schameEmp.printSchema()</span><br><span class="line">	print(schameEmp.count())</span><br><span class="line">	print(schameEmp.show(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	spark = SparkSession.builder.appName(<span class="string">'dataframe'</span>).master(<span class="string">'local[2]'</span>).getOrCreate()</span><br><span class="line">	read_text = spark.sparkContext.textFile(<span class="string">'D:\myProject\Spark\PySpark\data\emp.txt'</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">#reflect(read_text)</span></span><br><span class="line">	structType(read_text)</span><br><span class="line">	spark.stop()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>一些其他的操作查看官网：<a href="http://spark.apache.org/docs/2.3.2/sql-programming-guide.html#inferring-the-schema-using-reflection" target="_blank" rel="noopener">http://spark.apache.org/docs/2.3.2/sql-programming-guide.html#inferring-the-schema-using-reflection</a></li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    Marsm
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/" title="pySpark-DataFrame">http://marsm.top/Spark/2018/12/29/pySpark-DataFrame/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-13T08:55:26+08:00" content="2019-03-13">
+          03-13
+        </time>
       </div>
-    
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
-          
-            <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-          <div class="wp_rating">
-            <div id="wpac-rating"></div>
-          </div>
-        
-
-        
-
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/Spark/2018/12/28/pySpark-SQL/" rel="next" title="pySpark-SQL">
-                <i class="fa fa-chevron-left"></i> pySpark-SQL
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Excel/2019/03/13/Excel常见函数/" rel="prev" title="Excel常见函数">
-                Excel常见函数 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
         
-  <div class="bdsharebuttonbox">
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
-    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a class="bds_count" data-cmd="count"></a>
-  </div>
-  <script>
-    window._bd_share_config = {
-      "common": {
-        "bdText": "",
-        "bdMini": "2",
-        "bdMiniList": false,
-        "bdPic": ""
-      },
-      "share": {
-        "bdSize": "16",
-        "bdStyle": "0"
-      },
-      "image": {
-        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
-        "viewText": "分享到：",
-        "viewSize": "16"
-      }
-    }
-  </script>
+        
+        
 
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/Excel/2019/03/13/Excel常见函数/" itemprop="url">
+              
+                <span itemprop="name">Excel常见函数</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-13T08:51:43+08:00" content="2019-03-13">
+          03-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
 
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -650,13 +435,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
 
         </div>
         
@@ -677,17 +455,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -749,22 +518,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-DataFrame"><span class="nav-number">1.</span> <span class="nav-text">Spark DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame和RDD互操作的两种方法："><span class="nav-number">1.1.</span> <span class="nav-text">DataFrame和RDD互操作的两种方法：</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -930,10 +683,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
@@ -1450,23 +1199,6 @@
 
   
   
-  <script type="text/javascript">
-  wpac_init = window.wpac_init || [];
-  wpac_init.push({widget: 'Rating', id: ,
-    el: 'wpac-rating',
-    color: 'fc6423'
-  });
-  (function() {
-    if ('WIDGETPACK_LOADED' in window) return;
-    WIDGETPACK_LOADED = true;
-    var mc = document.createElement('script');
-    mc.type = 'text/javascript';
-    mc.async = true;
-    mc.src = '//embed.widgetpack.com/widget.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-  })();
-  </script>
-
 
   
 
