@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MapReduce,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、初始MapReduce1. MapReduce计算模型介绍1.1 理解MapReduce思想 MapReduce 思想在 生 活中 处处 可见 。 或 多 或少 都曾 接触 过这 种 思想 。MapReduce 的思想核心是“ 分而治之”， 适用于大量复杂的任务处理场景 （大规模数据处理场景）。 即使是发布过论文实现分布式计算的谷歌也只是实现了这种思想，而不是自己原创。 Map 负责“分”，即">
+<meta name="keywords" content="MapReduce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MapReduce">
+<meta property="og:url" content="http://marsm.top/HADOOP/2018/02/27/MapReduce概述/index.html">
+<meta property="og:site_name" content="Marsm">
+<meta property="og:description" content="一、初始MapReduce1. MapReduce计算模型介绍1.1 理解MapReduce思想 MapReduce 思想在 生 活中 处处 可见 。 或 多 或少 都曾 接触 过这 种 思想 。MapReduce 的思想核心是“ 分而治之”， 适用于大量复杂的任务处理场景 （大规模数据处理场景）。 即使是发布过论文实现分布式计算的谷歌也只是实现了这种思想，而不是自己原创。 Map 负责“分”，即">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/mapreduce/mr-1.JPG">
+<meta property="og:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/mapreduce/mr-2.JPG">
+<meta property="og:updated_time" content="2018-03-18T08:03:57.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MapReduce">
+<meta name="twitter:description" content="一、初始MapReduce1. MapReduce计算模型介绍1.1 理解MapReduce思想 MapReduce 思想在 生 活中 处处 可见 。 或 多 或少 都曾 接触 过这 种 思想 。MapReduce 的思想核心是“ 分而治之”， 适用于大量复杂的任务处理场景 （大规模数据处理场景）。 即使是发布过论文实现分布式计算的谷歌也只是实现了这种思想，而不是自己原创。 Map 负责“分”，即">
+<meta name="twitter:image" content="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/mapreduce/mr-1.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://marsm.top/HADOOP/2018/02/27/MapReduce概述/">
+
+
+
+
+
+  <title>MapReduce | Marsm</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?78fc6121aab1cdc163ad11bea6fa7076";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Marsm</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Life is short, you need Python</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首&emsp;&emsp;页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标&emsp;&emsp;签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分&emsp;&emsp;类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归&emsp;&emsp;档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜&emsp;&emsp;索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://marsm.top/HADOOP/2018/02/27/MapReduce概述/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Marsm">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Marsm">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MapReduce</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T20:59:09+08:00">
+                2018-02-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-18T16:03:57+08:00">
+                2018-03-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/HADOOP/" itemprop="url" rel="index">
+                    <span itemprop="name">HADOOP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/HADOOP/2018/02/27/MapReduce概述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/HADOOP/2018/02/27/MapReduce概述/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/HADOOP/2018/02/27/MapReduce概述/" class="leancloud_visitors" data-flag-title="MapReduce">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  23
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、初始MapReduce"><a href="#一、初始MapReduce" class="headerlink" title="一、初始MapReduce"></a>一、初始MapReduce</h1><h2 id="1-MapReduce计算模型介绍"><a href="#1-MapReduce计算模型介绍" class="headerlink" title="1. MapReduce计算模型介绍"></a>1. MapReduce计算模型介绍</h2><h3 id="1-1-理解MapReduce思想"><a href="#1-1-理解MapReduce思想" class="headerlink" title="1.1 理解MapReduce思想"></a>1.1 理解MapReduce思想</h3><ul>
+<li>MapReduce 思想在 生 活中 处处 可见 。 或 多 或少 都曾 接触 过这 种 思想 。MapReduce 的思想核心是“ 分而治之”， 适用于大量复杂的任务处理场景 （大规模数据处理场景）。 即使是发布过论文实现分布式计算的谷歌也只是实现了这种思想，而不是自己原创。</li>
+<li><code>Map 负责“分”</code>，即把复杂的任务分解为若干个“简单的任务”来并行处理。可以进行拆分的前提是这些小任务可以<code>并行计算</code>，彼此间几乎<code>没有依赖关系</code>。</li>
+<li><code>Reduce 负责“合”</code>，即对 map 阶段的结果进行全局<code>汇总</code>。</li>
+<li>这两个阶段合起来正是 MapReduce 思想的体现。</li>
+<li>还有一个比较形象的语言解释 MapReduce：</li>
+<li>我们要数图书馆中的所有书。你数 1 号书架，我数 2 号书架。这就是“ Map” 。我们人越多，数书就更快。</li>
+<li>现在我们到一起，把所有人的统计数加在一起。这就是“ Reduce” 。</li>
+</ul>
+<h3 id="1-2-Hadoop-MapReduce设计思想"><a href="#1-2-Hadoop-MapReduce设计思想" class="headerlink" title="1.2 Hadoop MapReduce设计思想"></a>1.2 Hadoop MapReduce设计思想</h3><ul>
+<li>MapReduce 是一个分布式运算程序的编程框架，核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在Hadoop 集群上。</li>
+<li>既然是做计算的框架，那么表现形式就是有个输入（ input）， MapReduce 操作这个输入（ input），通过本身定义好的计算模型，得到一个输出（ output）。</li>
+<li>对许多开发者来说，自己完完全全实现一个并行计算程序难度太大，而MapReduce 就是一种简化并行计算的编程模型，降低了开发并行应用的入门门槛。</li>
+<li>Hadoop MapReduce 构思体现在如下的三个方面：<ul>
+<li>如何对付大数据处理： 分而治之</li>
+<li>对相互间不具有计算依赖关系的大数据，实现并行最自然的办法就是采取分而治之的策略。 并行计算的第一个重要问题是如何划分计算任务或者计算数据以便对划分的子任务或数据块同时进行计算。 不可分拆的计算任务或相互间有依赖关系的数据无法进行并行计算！</li>
+<li>构建抽象模型： Map 和 Reduce</li>
+<li>MapReduce 借鉴了函数式语言中的思想，用 Map 和 Reduce 两个函数提供了高层的并行编程抽象模型。</li>
+<li>Map: 对一组数据元素进行某种重复式的处理；</li>
+<li>Reduce: 对 Map 的中间结果进行某种进一步的结果整理。</li>
+<li>MapReduce 中定义了如下的 Map 和 Reduce 两个抽象的编程接口，由用户去<br>编程实现:</li>
+<li>map: (k1; v1) → [(k2; v2)]</li>
+<li>reduce: (k2; [v2]) → [(k3; v3)]</li>
+<li>Map 和 Reduce 为程序员提供了一个清晰的操作接口抽象描述。 通过以上两个编程接口，大家可以看出 <code>MapReduce 处理的数据类型是&lt;key,value&gt;键值对</code>。</li>
+<li>统一构架， 隐藏系统层细节</li>
+<li>如何提供统一的计算框架， 如果没有统一封装底层细节， 那么程序员则需要考虑诸如数据存储、划分、分发、结果收集、错误恢复等诸多细节；为此，MapReduce 设计并提供了统一的计算框架，为程序员隐藏了绝大多数系统层面的处理细节。</li>
+</ul>
+</li>
+<li>MapReduce 最大的亮点在于通过抽象模型和计算框架把需要做什么(what need to do)与具体怎么做(how to do)分开了，为程序员提供一个抽象和高层的编程接口和框架。 程序员仅需要关心其应用层的具体计算问题，仅需编写少量的处理应用本身计算问题的程序代码。如何具体完成这个并行计算任务所相关的诸多系统层细节被隐藏起来,交给计算框架去处理：从分布代码的执行，到大到数千小到单个节点集群的自动调度使用。</li>
+</ul>
+<h3 id="1-3-MapReduce框架"><a href="#1-3-MapReduce框架" class="headerlink" title="1.3 MapReduce框架"></a>1.3 MapReduce框架</h3><ul>
+<li>一个完整的 mapreduce 程序在分布式运行时有三类实例进程：<ul>
+<li>MRAppMaster：负责整个程序的过程调度及状态协调</li>
+<li>MapTask：负责 map 阶段的整个数据处理流程</li>
+<li>ReduceTask：负责 reduce 阶段的整个数据处理流程</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/mapreduce/mr-1.JPG" alt=""></p>
+<h2 id="2-MapReduce编程规范及示例编写"><a href="#2-MapReduce编程规范及示例编写" class="headerlink" title="2. MapReduce编程规范及示例编写"></a>2. MapReduce编程规范及示例编写</h2><h3 id="2-1-编程规范"><a href="#2-1-编程规范" class="headerlink" title="2.1 编程规范"></a>2.1 编程规范</h3><p>（ 1） 用户编写的程序分成三个部分： Mapper， Reducer， Driver(提交运行 mr 程序的客户端)<br>（ 2） Mapper 的输入数据是 KV 对的形式（ KV 的类型可自定义）<br>（ 3） Mapper 的输出数据是 KV 对的形式（ KV 的类型可自定义）<br>（ 4） Mapper 中的业务逻辑写在 map()方法中<br>（ 5） map()方法（ maptask 进程）对每一个&lt;K,V&gt;调用一次<br>（ 6） Reducer 的输入数据类型对应 Mapper 的输出数据类型，也是 KV<br>（ 7） Reducer 的业务逻辑写在 reduce()方法中<br>（ 8） Reducetask 进程对每一组相同 k 的&lt;k,v&gt;组调用一次 reduce()方法<br>（ 9） 用户自定义的 Mapper 和 Reducer 都要继承各自的父类<br>（ 10） 整个程序需要一个 Drvier 来进行提交，提交的是一个描述了各种必要信息的 job 对象</p>
+<h3 id="2-2-WordCount示例编写"><a href="#2-2-WordCount示例编写" class="headerlink" title="2.2 WordCount示例编写"></a>2.2 WordCount示例编写</h3><ul>
+<li>需求：在一堆给定的文本文件中统计输出每一个单词出现的总次数<br>（1）定义一个mapper类<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//首先要定义四个泛型的类型</span><br><span class="line">//keyin: LongWritable valuein: Text</span><br><span class="line">//keyout: Text valueout:IntWritable</span><br><span class="line">public class WordCountMapper extends Mapper&lt;LongWritable, Text, Text, IntWritable&gt; &#123;</span><br><span class="line">	// map 方法的生命周期： 框架每传一行数据就被调用一次</span><br><span class="line">	// key : 这一行的起始点在文件中的偏移量</span><br><span class="line">	// value: 这一行的内容</span><br><span class="line">	@Override</span><br><span class="line">	protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">		// 拿到一行数据转换为 string</span><br><span class="line">		String line = value.toString();</span><br><span class="line">		// 将这一行切分出各个单词</span><br><span class="line">		String[] words = line.split(&quot; &quot;);</span><br><span class="line">		// 遍历数组，输出&lt;单词， 1&gt;</span><br><span class="line">		for (String word : words) &#123;</span><br><span class="line">			context.write(new Text(word), new IntWritable(1));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>（2）定义一个reducer类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	//生命周期：框架每传递进来一个 kv 组， reduce 方法被调用一次</span><br><span class="line">	@Override</span><br><span class="line">	protected void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException,</span><br><span class="line">InterruptedException &#123;</span><br><span class="line">		//定义一个计数器</span><br><span class="line">        int count = 0;</span><br><span class="line">        //遍历这一组 kv 的所有 v，累加到 count 中</span><br><span class="line">        for(IntWritable value:values)&#123;</span><br><span class="line">        	count += value.get();</span><br><span class="line">        &#125;</span><br><span class="line">		context.write(key, new IntWritable(count));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>（3）定义一个主类，用来描述job并提交job<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class WordCountRunner &#123;</span><br><span class="line">	//把业务逻辑相关的信息（哪个是 mapper，哪个是 reducer， 要处理的数据在哪里，输出的结果放哪里……）描述成一个 job 对象</span><br><span class="line">	//把这个描述好的 job 提交给集群去运行</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		Configuration conf = new Configuration();</span><br><span class="line">		Job wcjob = Job.getInstance(conf);</span><br><span class="line">		//指定我这个 job 所在的 jar 包</span><br><span class="line">		// wcjob.setJar(&quot;/home/hadoop/wordcount.jar&quot;);</span><br><span class="line">		wcjob.setJarByClass(WordCountRunner.class);</span><br><span class="line">		</span><br><span class="line">		wcjob.setMapperClass(WordCountMapper.class);</span><br><span class="line">		wcjob.setReducerClass(WordCountReducer.class);</span><br><span class="line">        //设置我们的业务逻辑 Mapper 类的输出 key 和 value 的数据类型</span><br><span class="line">        wcjob.setMapOutputKeyClass(Text.class);</span><br><span class="line">        wcjob.setMapOutputValueClass(IntWritable.class);</span><br><span class="line">        //设置我们的业务逻辑 Reducer 类的输出 key 和 value 的数据类型</span><br><span class="line">        wcjob.setOutputKeyClass(Text.class);</span><br><span class="line">        wcjob.setOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        //指定要处理的数据所在的位置</span><br><span class="line">        FileInputFormat.setInputPaths(wcjob, &quot;hdfs://hdp-server01:9000/wordcount/data/big.txt&quot;);</span><br><span class="line">        //指定处理完成之后的结果所保存的位置</span><br><span class="line">        FileOutputFormat.setOutputPath(wcjob, new Path(&quot;hdfs://hdp-server01:9000/wordcount/output/&quot;));</span><br><span class="line"></span><br><span class="line">		//向 yarn 集群提交这个 job	</span><br><span class="line">		boolean res = wcjob.waitForCompletion(true);</span><br><span class="line">		System.exit(res?0:1);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-MapReduce程序运行模式"><a href="#3-MapReduce程序运行模式" class="headerlink" title="3. MapReduce程序运行模式"></a>3. MapReduce程序运行模式</h2><h3 id="3-1-本地运行模式"><a href="#3-1-本地运行模式" class="headerlink" title="3.1 本地运行模式"></a>3.1 本地运行模式</h3><p>（ 1） mapreduce 程序是被提交给 LocalJobRunner 在本地以单进程的形式运行<br>（ 2） 而处理的数据及输出结果可以在本地文件系统，也可以在 hdfs 上<br>（ 3） 怎样实现本地运行？写一个程序，不要带集群的配置文件<br>    本质是程序的 conf 中是否有 mapreduce.framework.name=local 以及yarn.resourcemanager.hostname 参数<br>（ 4） 本地模式非常便于进行业务逻辑的 debug，只要在 eclipse 中打断点即可</p>
+<h3 id="3-2-集群运行模式"><a href="#3-2-集群运行模式" class="headerlink" title="3.2 集群运行模式"></a>3.2 集群运行模式</h3><p>（ 1） 将 mapreduce 程序提交给 yarn 集群，分发到很多的节点上并发执行<br>（ 2） 处理的数据和输出结果应该位于 hdfs 文件系统<br>（ 3） 提交集群的实现步骤：</p>
+<pre><code>- 将程序打成 JAR 包，然后在集群的任意一个节点上用 hadoop 命令启动
+    - hadoop jar wordcount.jar cn.itcast.bigdata.mrsimple.WordCountDriver args
+</code></pre><h1 id="二、深入MapReduce"><a href="#二、深入MapReduce" class="headerlink" title="二、深入MapReduce"></a>二、深入MapReduce</h1><h2 id="1-MapReduce的输入和输出"><a href="#1-MapReduce的输入和输出" class="headerlink" title="1. MapReduce的输入和输出"></a>1. MapReduce的输入和输出</h2><ul>
+<li>MapReduce 框架运转在<code>&lt;key,value&gt;键值对</code>上，也就是说，框架把作业的输入看成是一组&lt;key,value&gt;键值对，同样也产生一组&lt;key,value&gt;键值对作为作业的输出，这两组键值对可能是不同的。</li>
+<li>一个 MapReduce 作业的输入和输出类型如下图所示：可以看出在整个标准的流程中，会有三组&lt;key,value&gt;键值对类型的存在。</li>
+</ul>
+<p><img src="https://myblog-1253777107.cos.ap-chengdu.myqcloud.com/mapreduce/mr-2.JPG" alt=""></p>
+<h2 id="2-MapReduce的处理流程解析"><a href="#2-MapReduce的处理流程解析" class="headerlink" title="2. MapReduce的处理流程解析"></a>2. MapReduce的处理流程解析</h2><h3 id="2-1-Mapper任务执行过程详解"><a href="#2-1-Mapper任务执行过程详解" class="headerlink" title="2.1 Mapper任务执行过程详解"></a>2.1 Mapper任务执行过程详解</h3><ul>
+<li><strong>第一阶段：</strong>是把输入目录下文件按照一定的标准逐个进行<code>逻辑切片</code>， 形成切片规划。 默认情况下， Split size = Block size。 每一个切片由一个MapTask 处理。 （ getSplits）</li>
+<li><strong>第二阶段：</strong>是对切片中的数据按照一定的规则解析成&lt;key,value&gt;对。 默认规则是把每一行文本内容解析成键值对。 key 是每一行的起始位置(单位是字节)， value 是本行的文本内容。 （ TextInputFormat）</li>
+<li><strong>第三阶段：</strong>是调用Mapper 类中的 map 方法。 上阶段中每解析出来的一个&lt;k,v&gt;，调用一次 map 方法。 每次调用 map 方法会输出零个或多个键值对。</li>
+<li><strong>第四阶段：</strong>是按照一定的规则对第三阶段输出的键值对进行分区。 默认是只有一个区。 分区的数量就是 Reducer 任务运行的数量。默认只有一个Reducer 任务。</li>
+<li><strong>第五阶段：</strong>是对每个分区中的键值对进行排序。首先，按照键进行排序，对于键相同的键值对，按照值进行排序。比如三个键值对&lt;2,2&gt;、 &lt;1,3&gt;、&lt;2,1&gt;，键和值分别是整数。那么排序后的结果是&lt;1,3&gt;、 &lt;2,1&gt;、 &lt;2,2&gt;。如果有第六阶段，那么进入第六阶段；如果没有，直接输出到文件中。</li>
+<li><strong>第六阶段：</strong>是对数据进行局部聚合处理，也就是 combiner 处理。 键相等的键值对会调用一次 reduce 方法。经过这一阶段，数据量会减少。 本阶段默认是没有的。</li>
+</ul>
+<h3 id="2-2-Reducer任务执行过程详解"><a href="#2-2-Reducer任务执行过程详解" class="headerlink" title="2.2 Reducer任务执行过程详解"></a>2.2 Reducer任务执行过程详解</h3><ul>
+<li><strong>第一阶段：</strong>是 Reducer 任务会主动从 Mapper 任务复制其输出的键值对。Mapper 任务可能会有很多，因此 Reducer 会复制多个 Mapper 的输出。</li>
+<li><strong>第二阶段：</strong>是把复制到 Reducer 本地数据，全部进行合并，即把分散的数据合并成一个大的数据。再对合并后的数据排序。</li>
+<li><p><strong>第三阶段：</strong>是对排序后的键值对调用 reduce 方法。 键相等的键值对调用一次reduce 方法，每次调用会产生零个或者多个键值对。最后把这些输出的键值对写入到 HDFS 文件中。</p>
+</li>
+<li><p><code>在整个MapReduce程序的开发过程中，我们最大的工作量是覆盖map函数和覆盖reduce函数。</code></p>
+</li>
+</ul>
+<h1 id="三、MapReduce的序列化"><a href="#三、MapReduce的序列化" class="headerlink" title="三、MapReduce的序列化"></a>三、MapReduce的序列化</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><ul>
+<li><code>序列化</code>（ Serialization）是指把结构化对象转化为字节流。</li>
+<li><code>反序列化</code> （ Deserialization）是序列化的逆过程。把字节流转为结构化对象。</li>
+<li>当要在进程间传递对象或持久化对象的时候，就需要序列化对象成字节流，反之当要将接收到或从磁盘读取的字节流转换为对象，就要进行反序列化。</li>
+<li>Java 的序列化（ Serializable） 是一个重量级序列化框架，一个对象被序列化后，会附带很多额外的信息（各种校验信息， header，继承体系…），不便于在网络中高效传输；所以， hadoop 自己开发了一套序列化机制（ Writable），精简，高效。 不用像 java 对象类一样传输多层的父子关系，需要哪个属性就传输哪个属性值，大大的减少网络传输的开销。</li>
+<li>Writable 是 Hadoop 的序列化格式，hadoop 定义了这样一个 Writable 接口。<br>一个类要支持可序列化只需实现这个接口即可。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Writable&#123;</span><br><span class="line">  	void write(DataOutput out) throws IOException;</span><br><span class="line">  	void readFileds(DataInput in) throws IOException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-Wtitable序列化接口"><a href="#2-Wtitable序列化接口" class="headerlink" title="2. Wtitable序列化接口"></a>2. Wtitable序列化接口</h2><ul>
+<li>如需要将自定义的 bean 放在 key 中传输，则还需要实现 comparable 接口，因为 mapreduce 框中的 shuffle 过程一定会对 key 进行排序,此时，自定义的bean 实现的接口应该是：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowBean</span> <span class="keyword">implements</span> <span class="title">WritableComparable</span>&lt;<span class="title">FlowBean</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> upFlow;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> dfFow;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sumFlow;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlowBean</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlowBean</span><span class="params">(<span class="keyword">long</span> upFlow, <span class="keyword">long</span> dfFow, <span class="keyword">long</span> sumFlow)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = upFlow;</span><br><span class="line">        <span class="keyword">this</span>.dfFow = dfFow;</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = sumFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlowBean</span><span class="params">(<span class="keyword">long</span> upFlow, <span class="keyword">long</span> dfFow)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = upFlow;</span><br><span class="line">        <span class="keyword">this</span>.dfFow = dfFow;</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = upFlow + dfFow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">long</span> upFlow,<span class="keyword">long</span> dfFow )</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = upFlow;</span><br><span class="line">        <span class="keyword">this</span>.dfFow = dfFow;</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = upFlow + dfFow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getUpFlow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> upFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getDfFow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfFow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getSumFlow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sumFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> upFlow+<span class="string">"\t"</span>+dfFow+<span class="string">"\t"</span>+sumFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 序列化的方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> out</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(DataOutput out)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        out.writeLong(upFlow);</span><br><span class="line">        out.writeLong(dfFow);</span><br><span class="line">        out.writeLong(sumFlow);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反序列化的方法，反序列化时，从流中读取到各个字段的顺序应该与序列化时写出去的顺序保持一致</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> in</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFields</span><span class="params">(DataInput in)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = in.readLong();</span><br><span class="line">        <span class="keyword">this</span>.dfFow = in.readLong();</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = in.readLong();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象比较大小</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> o</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(FlowBean o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.sumFlow&gt;o.getSumFlow()?-<span class="number">1</span>:<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * compareTo 方法用于将当前对象与方法的参数进行比较。</span></span><br><span class="line"><span class="comment">     *如果指定的数与参数相等返回 0。</span></span><br><span class="line"><span class="comment">     * 如果指定的数小于参数返回 -1。</span></span><br><span class="line"><span class="comment">     * 如果指定的数大于参数返回 1。</span></span><br><span class="line"><span class="comment">     * 例如： o1.compareTo(o2);</span></span><br><span class="line"><span class="comment">     * 返回正数的话，当前对象（调用 compareTo 方法的对象 o1）要排在比较</span></span><br><span class="line"><span class="comment">     * 对象（ compareTo 传参对象 o2）后面，返回负数的话，放在前面。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>mapper实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>,<span class="title">Text</span>,<span class="title">Text</span>,<span class="title">FlowBean</span>&gt; </span>&#123;</span><br><span class="line">    Text k = <span class="keyword">new</span> Text();</span><br><span class="line"></span><br><span class="line">    FlowBean v = <span class="keyword">new</span> FlowBean();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        String line = value.toString();</span><br><span class="line">        String[] fileds = line.split(<span class="string">"\t"</span>);</span><br><span class="line">        String phoneNum = fileds[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">long</span> upFlow = Long.parseLong(fileds[fileds.length-<span class="number">3</span>]);</span><br><span class="line">        <span class="keyword">long</span> dFlow = Long.parseLong(fileds[fileds.length-<span class="number">2</span>]);</span><br><span class="line">        k.set(phoneNum);</span><br><span class="line">        v.set(upFlow,dFlow);</span><br><span class="line">        context.write(k,v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>reducer实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>,<span class="title">FlowBean</span>,<span class="title">Text</span>,<span class="title">FlowBean</span>&gt; </span>&#123;</span><br><span class="line">    FlowBean v = <span class="keyword">new</span> FlowBean();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;FlowBean&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> upFlowCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> dFlowCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (FlowBean bean :values)&#123;</span><br><span class="line">            upFlowCount +=bean.getUpFlow();</span><br><span class="line">            dFlowCount +=bean.getDfFow();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        v.set(upFlowCount,dFlowCount);</span><br><span class="line">        context.write(key,v);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>程序入口：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumRunner</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//把业务逻辑相关的信息（哪个是maooer,哪个是reduce，要处理的数据在哪里，输出结果放哪）</span></span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line">        <span class="comment">//指定我job所在的jar包</span></span><br><span class="line">        job.setJarByClass(FlowSumRunner.class);</span><br><span class="line"></span><br><span class="line">        job.setMapperClass(FlowSumMapper.class);</span><br><span class="line">        job.setReducerClass(FlowSumReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置业务逻辑Mapper类的输出keu和value的数据类型</span></span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(FlowBean.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置业务逻辑Reduce类的输出key和value的数据类型</span></span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(FlowBean.class);</span><br><span class="line"></span><br><span class="line">        job.setNumReduceTasks(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//指定要处理的数据所在的位置</span></span><br><span class="line">        <span class="comment">//FileInputFormat.setInputPaths(job,"hdfs://node-1:9000/wordcount/input/somewords.txt");</span></span><br><span class="line">        FileInputFormat.setInputPaths(job,<span class="string">"D:\\myProject\\wordcount\\input\\http.txt"</span>);</span><br><span class="line">        <span class="comment">//指定处理完成之后的结果所保存的位置</span></span><br><span class="line">        <span class="comment">//FileOutputFormat.setOutputPath(job,new Path("hdfs://node-1:9000/wordcount/output/"));</span></span><br><span class="line">        FileOutputFormat.setOutputPath(job,<span class="keyword">new</span> Path(<span class="string">"D:\\myProject\\wordcount\\output"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//向yarn集群提交job</span></span><br><span class="line">        <span class="keyword">boolean</span> wait = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(wait?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="四、Mapreduce的排序"><a href="#四、Mapreduce的排序" class="headerlink" title="四、Mapreduce的排序"></a>四、Mapreduce的排序</h1><p>##1.需求</p>
+<ul>
+<li>在得出统计每一个用户（手机号）所耗费的总上行流量、下行流量，总流量结果的基础之上再加一个需求：将统计结果按照总流量倒序排序。</li>
+</ul>
+<h2 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h2><ul>
+<li>基本思路：</li>
+<li><strong>实现自定义的bean来封装流量信息，并将bean作为map输出的key来传输</strong></li>
+<li>MR 程序在处理数据的过程中会对数据排序(map 输出的 kv 对传输到 reduce之前，会排序)，排序的依据是 map 输出的 key。 所以，我们如果要实现自己需要的排序规则，则可以考虑将排序因素放到 key 中，让 key 实现接口：</li>
+<li>WritableComparable， 然后重写 key 的 compareTo 方法。</li>
+</ul>
+<h2 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h2><p>自定义的bean：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowBean</span> <span class="keyword">implements</span> <span class="title">WritableComparable</span>&lt;<span class="title">FlowBean</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> upFlow;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> dfFow;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sumFlow;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlowBean</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlowBean</span><span class="params">(<span class="keyword">long</span> upFlow, <span class="keyword">long</span> dfFow, <span class="keyword">long</span> sumFlow)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = upFlow;</span><br><span class="line">        <span class="keyword">this</span>.dfFow = dfFow;</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = sumFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FlowBean</span><span class="params">(<span class="keyword">long</span> upFlow, <span class="keyword">long</span> dfFow)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = upFlow;</span><br><span class="line">        <span class="keyword">this</span>.dfFow = dfFow;</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = upFlow + dfFow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">long</span> upFlow,<span class="keyword">long</span> dfFow )</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = upFlow;</span><br><span class="line">        <span class="keyword">this</span>.dfFow = dfFow;</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = upFlow + dfFow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getUpFlow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> upFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getDfFow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfFow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getSumFlow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sumFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> upFlow+<span class="string">"\t"</span>+dfFow+<span class="string">"\t"</span>+sumFlow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 序列化的方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> out</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(DataOutput out)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        out.writeLong(upFlow);</span><br><span class="line">        out.writeLong(dfFow);</span><br><span class="line">        out.writeLong(sumFlow);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反序列化的方法，反序列化时，从流中读取到各个字段的顺序应该与序列化时写出去的顺序保持一致</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> in</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFields</span><span class="params">(DataInput in)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.upFlow = in.readLong();</span><br><span class="line">        <span class="keyword">this</span>.dfFow = in.readLong();</span><br><span class="line">        <span class="keyword">this</span>.sumFlow = in.readLong();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象比较大小</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> o</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(FlowBean o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.sumFlow&gt;o.getSumFlow()?-<span class="number">1</span>:<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * compareTo 方法用于将当前对象与方法的参数进行比较。</span></span><br><span class="line"><span class="comment">     *如果指定的数与参数相等返回 0。</span></span><br><span class="line"><span class="comment">     * 如果指定的数小于参数返回 -1。</span></span><br><span class="line"><span class="comment">     * 如果指定的数大于参数返回 1。</span></span><br><span class="line"><span class="comment">     * 例如： o1.compareTo(o2);</span></span><br><span class="line"><span class="comment">     * 返回正数的话，当前对象（调用 compareTo 方法的对象 o1）要排在比较</span></span><br><span class="line"><span class="comment">     * 对象（ compareTo 传参对象 o2）后面，返回负数的话，放在前面。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>mapper实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumSortMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>,<span class="title">Text</span>,<span class="title">FlowBean</span>,<span class="title">Text</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    FlowBean k = <span class="keyword">new</span> FlowBean();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        String line = value.toString();</span><br><span class="line">        String[] strings = line.split(<span class="string">"\t"</span>);</span><br><span class="line">        String phoneNum = strings[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> upFlowSum = Long.parseLong(strings[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">long</span> dFlowSum = Long.parseLong(strings[<span class="number">2</span>]);</span><br><span class="line">        k.set(upFlowSum,dFlowSum);</span><br><span class="line"></span><br><span class="line">        context.write(k,<span class="keyword">new</span> Text(phoneNum));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>reducer实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumSortReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">FlowBean</span>,<span class="title">Text</span>,<span class="title">Text</span>,<span class="title">FlowBean</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(FlowBean key, Iterable&lt;Text&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> upFlowCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> dFlowCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (FlowBean bean :values)&#123;</span><br><span class="line">            upFlowCount +=bean.getUpFlow();</span><br><span class="line">            dFlowCount +=bean.getDfFow();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        v.set(upFlowCount,dFlowCount);</span><br><span class="line">        context.write(key,v);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="五、Mapreduce的分区-Partitioner"><a href="#五、Mapreduce的分区-Partitioner" class="headerlink" title="五、Mapreduce的分区-Partitioner"></a>五、Mapreduce的分区-Partitioner</h1><h2 id="1-需求"><a href="#1-需求" class="headerlink" title="1. 需求"></a>1. 需求</h2><ul>
+<li>将流量汇总统计结果按照手机归属地不同省份输出到不同文件中。</li>
+</ul>
+<h2 id="2-分析-1"><a href="#2-分析-1" class="headerlink" title="2. 分析"></a>2. 分析</h2><ul>
+<li>Mapreduce 中会将 map 输出的 kv 对，按照相同 key 分组，然后分发给不同的 reducetask。</li>
+<li>默认的分发规则为：根据 key 的 hashcode%reducetask 数来分发</li>
+<li>所以：如果要按照我们自己的需求进行分组，则需要改写数据分发（分组）组件 Partitioner， 自定义一个 CustomPartitioner 继承抽象类： Partitioner， 然后在job 对象中，设置自定义 partitioner： job.setPartitionerClass(CustomPartitioner.class</li>
+</ul>
+<h2 id="3-实现-1"><a href="#3-实现-1" class="headerlink" title="3.实现"></a>3.实现</h2><p>自定义Partitioner：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProvincePartitioner</span> <span class="keyword">extends</span> <span class="title">Partitioner</span>&lt;<span class="title">Text</span>,<span class="title">FlowBean</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> HashMap&lt;String,Integer&gt; provinceMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        provinceMap.put(<span class="string">"134"</span>,<span class="number">0</span>);</span><br><span class="line">        provinceMap.put(<span class="string">"135"</span>,<span class="number">1</span>);</span><br><span class="line">        provinceMap.put(<span class="string">"136"</span>,<span class="number">2</span>);</span><br><span class="line">        provinceMap.put(<span class="string">"137"</span>,<span class="number">3</span>);</span><br><span class="line">        provinceMap.put(<span class="string">"138"</span>,<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(Text key, FlowBean value, <span class="keyword">int</span> numPartitions)</span> </span>&#123;</span><br><span class="line">        Integer code = provinceMap.get(key.toString().substring(<span class="number">0</span>,<span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (code !=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> code;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>mr程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumProvince</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumProvinceMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>,<span class="title">Text</span>,<span class="title">Text</span>,<span class="title">FlowBean</span>&gt;</span>&#123;</span><br><span class="line">        Text k = <span class="keyword">new</span> Text();</span><br><span class="line">        FlowBean v = <span class="keyword">new</span> FlowBean();</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="comment">//拿去一行文本转为string</span></span><br><span class="line">            String line = value.toString();</span><br><span class="line">            <span class="comment">//按照分隔符\t进行分割</span></span><br><span class="line">            String[] fileds = line.split(<span class="string">"\t"</span>);</span><br><span class="line">            <span class="comment">//获取用户手机号</span></span><br><span class="line">            String phoneNum = fileds[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">long</span> upFlow = Long.parseLong(fileds[fileds.length-<span class="number">3</span>]);</span><br><span class="line">            <span class="keyword">long</span> dFlow = Long.parseLong(fileds[fileds.length-<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">            k.set(phoneNum);</span><br><span class="line">            v.set(upFlow,dFlow);</span><br><span class="line"></span><br><span class="line">            context.write(k,v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">FlowSumProvinceReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>,<span class="title">FlowBean</span>,<span class="title">Text</span>,<span class="title">FlowBean</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        FlowBean v = <span class="keyword">new</span> FlowBean();</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;FlowBean&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="keyword">long</span> upFlowCount = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">long</span> dFlowCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (FlowBean bean:values)&#123;</span><br><span class="line">                upFlowCount +=bean.getUpFlow();</span><br><span class="line">                dFlowCount +=bean.getDfFow();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            v.set(upFlowCount,dFlowCount);</span><br><span class="line"></span><br><span class="line">            context.write(key,v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//把业务逻辑相关的信息（哪个是maooer,哪个是reduce，要处理的数据在哪里，输出结果放哪）</span></span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line">        <span class="comment">//指定我job所在的jar包</span></span><br><span class="line">        job.setJarByClass(FlowSumProvince.class);</span><br><span class="line"></span><br><span class="line">        job.setMapperClass(FlowSumProvinceMapper.class);</span><br><span class="line">        job.setReducerClass(FlowSumProvinceReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置业务逻辑Mapper类的输出keu和value的数据类型</span></span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(FlowBean.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置业务逻辑Reduce类的输出key和value的数据类型</span></span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(FlowBean.class);</span><br><span class="line"></span><br><span class="line">        job.setNumReduceTasks(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这里指定使用自定义分区组件</span></span><br><span class="line">        job.setPartitionerClass(ProvincePartitioner.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//指定要处理的数据所在的位置</span></span><br><span class="line">        <span class="comment">//FileInputFormat.setInputPaths(job,"hdfs://node-1:9000/wordcount/input/somewords.txt");</span></span><br><span class="line">        FileInputFormat.setInputPaths(job,<span class="string">"D:\\myProject\\wordcount\\input\\http.txt"</span>);</span><br><span class="line">        <span class="comment">//指定处理完成之后的结果所保存的位置</span></span><br><span class="line">        <span class="comment">//FileOutputFormat.setOutputPath(job,new Path("hdfs://node-1:9000/wordcount/output/"));</span></span><br><span class="line">        FileOutputFormat.setOutputPath(job,<span class="keyword">new</span> Path(<span class="string">"D:\\myProject\\wordcount\\output"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//向yarn集群提交job</span></span><br><span class="line">        <span class="keyword">boolean</span> wait = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(wait?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="六、Mapreduce的combiner"><a href="#六、Mapreduce的combiner" class="headerlink" title="六、Mapreduce的combiner"></a>六、Mapreduce的combiner</h1><p>每一个 map 都可能会产生大量的本地输出， Combiner 的作用就是对 map 端的输出先做一次合并，以减少在 map 和 reduce 节点之间的数据传输量，以提高网络 IO 性能，是 MapReduce 的一种优化手段之一。</p>
+<ul>
+<li>combiner 是 MR 程序中 Mapper 和 Reducer 之外的一种组件</li>
+<li>combiner 组件的父类就是 Reducer</li>
+<li>combiner 和 reducer 的区别在于运行的位置：<ul>
+<li>Combiner 是在每一个 maptask 所在的节点运行</li>
+<li>Reducer 是接收全局所有 Mapper 的输出结果；</li>
+</ul>
+</li>
+<li>combiner 的意义就是对每一个 maptask 的输出进行局部汇总，以减小网络传输量</li>
+<li><code>具体实现步骤：</code><ul>
+<li><code>1、 自定义一个 combiner 继承 Reducer，重写 reduce 方法</code></li>
+<li><code>2、 在 job 中设置： job.setCombinerClass(CustomCombiner.class)</code></li>
+</ul>
+</li>
+<li>combiner 能够应用的前提是不能影响最终的业务逻辑， 而且， combiner 的输出 kv 应该跟 reducer 的输入 kv 类型要对应起来</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Marsm
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://marsm.top/HADOOP/2018/02/27/MapReduce概述/" title="MapReduce">http://marsm.top/HADOOP/2018/02/27/MapReduce概述/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MapReduce/" rel="tag"><i class="fa fa-tag"></i> MapReduce</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/HADOOP/2018/02/26/HDFS/" rel="next" title="HDFS">
+                <i class="fa fa-chevron-left"></i> HDFS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Linux/2018/02/28/搭建本地yum仓库/" rel="prev" title="搭建本地yum仓库">
+                搭建本地yum仓库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Marsm">
+            
+              <p class="site-author-name" itemprop="name">Marsm</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、初始MapReduce"><span class="nav-number">1.</span> <span class="nav-text">一、初始MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MapReduce计算模型介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1. MapReduce计算模型介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-理解MapReduce思想"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 理解MapReduce思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Hadoop-MapReduce设计思想"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 Hadoop MapReduce设计思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-MapReduce框架"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 MapReduce框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MapReduce编程规范及示例编写"><span class="nav-number">1.2.</span> <span class="nav-text">2. MapReduce编程规范及示例编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-编程规范"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 编程规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-WordCount示例编写"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 WordCount示例编写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-MapReduce程序运行模式"><span class="nav-number">1.3.</span> <span class="nav-text">3. MapReduce程序运行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-本地运行模式"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 本地运行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-集群运行模式"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 集群运行模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、深入MapReduce"><span class="nav-number">2.</span> <span class="nav-text">二、深入MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-MapReduce的输入和输出"><span class="nav-number">2.1.</span> <span class="nav-text">1. MapReduce的输入和输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-MapReduce的处理流程解析"><span class="nav-number">2.2.</span> <span class="nav-text">2. MapReduce的处理流程解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Mapper任务执行过程详解"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 Mapper任务执行过程详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Reducer任务执行过程详解"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 Reducer任务执行过程详解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、MapReduce的序列化"><span class="nav-number">3.</span> <span class="nav-text">三、MapReduce的序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-number">3.1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Wtitable序列化接口"><span class="nav-number">3.2.</span> <span class="nav-text">2. Wtitable序列化接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、Mapreduce的排序"><span class="nav-number">4.</span> <span class="nav-text">四、Mapreduce的排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-分析"><span class="nav-number">4.1.</span> <span class="nav-text">2. 分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实现"><span class="nav-number">4.2.</span> <span class="nav-text">3. 实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、Mapreduce的分区-Partitioner"><span class="nav-number">5.</span> <span class="nav-text">五、Mapreduce的分区-Partitioner</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-需求"><span class="nav-number">5.1.</span> <span class="nav-text">1. 需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-分析-1"><span class="nav-number">5.2.</span> <span class="nav-text">2. 分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实现-1"><span class="nav-number">5.3.</span> <span class="nav-text">3.实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、Mapreduce的combiner"><span class="nav-number">6.</span> <span class="nav-text">六、Mapreduce的combiner</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Marsm</span>
+	<br>
+  
+    <!--<span class="post-meta-divider">|</span>-->
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">全站字数&#58;</span>
+    
+    <span title="全站字数">80.6k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'kgmQivNAXWLoHERRMUGT3q0l-gzGzoHsz',
+        appKey: 'TIQYAjdznmPurJpulmEA7ygX',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kgmQivNAXWLoHERRMUGT3q0l-gzGzoHsz", "TIQYAjdznmPurJpulmEA7ygX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: ,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
